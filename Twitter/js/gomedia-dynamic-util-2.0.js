@@ -1,8 +1,9 @@
 /*
 gomedia-dynamic-util.js
 -bayon forte 7-28-2016
+-Ryan Giordano 12-7-2016
 This file will be 'ACTIVELY LIVE' getting pulled into and used by thousands of pieces of dynamic content.
-Primarily new Digital Signage (v2) or html+ content.
+Primarily new Digital Signage (v3) or html+ content.
 DO NOT DELETE OR WORK ON IT DIRECTLY.
 I. Functions
 	1. QueryStringToJSON()
@@ -19,14 +20,14 @@ I. Functions
 	12. edgeIsReady()
 
 DEVELOPER NOTES:
-1) All content files need to contain this function , gomediaDynamicInit(), because the
-portal uses this function like a 'callback' when a scene is refreshed.
-2) ANy content file that writes  a script to the head of the html document with the global loadScripts() function,
+1) main.js needs to container the function: gomediaDynamicInit(), because the
+portal uses this function like a callback when a scene is refreshed.
+2) Any content file that writes  a script to the head of the html document with the global loadScripts() function,
 for example JSONP requests to a proxy,
 needs to call this function, removeDynamicScripts(), once it has received the data it needs.
 Otherwise, scripts will continue to get added to the html because of the way that the portal software works.
 It takes a 'snapshot' of the html that was edited and saves it.
-
+3) Gomedia_Dynamic is inherited by dynamic modules like Twitter_Module and State_News_Module
 */
 class Gomedia_Dynamic{
   constructor(){
@@ -61,10 +62,14 @@ class Gomedia_Dynamic{
       return false;
   }
   addOnFunctions() {
-      this.hideLinks();
+      this.removeAnchorTags();
   }
-  hideLinks() {
-      $('a').hide();
+  removeAnchorTags() {
+      let anchors = document.querySelectorAll('a');
+      anchors.forEach(content=>{
+        let newContent = content.innerHTML;
+        content.replaceWith(newContent)
+      })
   }
   capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);

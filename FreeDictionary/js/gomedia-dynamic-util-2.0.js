@@ -62,10 +62,14 @@ class Gomedia_Dynamic{
       return false;
   }
   addOnFunctions() {
-      this.hideLinks();
+      this.removeAnchorTags();
   }
-  hideLinks() {
-      $('a').hide();
+  removeAnchorTags() {
+      let anchors = document.querySelectorAll('a');
+      anchors.forEach(content=>{
+        let newContent = content.innerHTML;
+        content.replaceWith(newContent)
+      })
   }
   capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);

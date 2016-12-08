@@ -7,7 +7,7 @@ Gomedia_Dynamic
 //////////////////////////////////////////////
 */
 
-class Twitter_Module extends Gomedia_Dynamic{
+class Twitter_Module extends Gomedia_Dynamic {
     constructor(optionsData) {
         super();
         for (let key in optionsData) {
@@ -21,16 +21,15 @@ class Twitter_Module extends Gomedia_Dynamic{
         if (this.checkParams) { //If We don't have hardcoded parameters
             this.count = this.getParameterByName('count');
             //If parameters are not set to look for user timeline, load in hashtags from the url
-            if(this.method !== "twitter_user_timeline"){
-              this.hashtags = [
-                  this.getParameterByName('hashtag1'),
-                  this.getParameterByName('hashtag2'),
-                  this.getParameterByName('hashtag3')
-              ]
-            }else{
-              this.handle = this.getParameterByName('handle') !==""? this.getParameterByName('handle') : this.handle;
+            if (this.method !== "twitter_user_timeline") {
+                this.hashtags = this.getParameterByName('hashtag1') !== "" || this.getParameterByName('hashtag2') !== "" || this.getParameterByName('hashtag3') !== "" ? [
+                    this.getParameterByName('hashtag1'),
+                    this.getParameterByName('hashtag2'),
+                    this.getParameterByName('hashtag3')
+                ] : this.hashtags
+            } else {
+                this.handle = this.getParameterByName('handle') !== "" ? this.getParameterByName('handle') : this.handle;
             }
-
             if (this.count == "" || this.count == undefined) {
                 this.count = "3";
             }
@@ -40,9 +39,8 @@ class Twitter_Module extends Gomedia_Dynamic{
                 console.error("No hashtags provided");
             }
             if (this.handle == "") {
-              console.error("No handle provided");
+                console.error("No handle provided");
             }
-
             switch (this.method) { //twitter hashtag listener
                 case "twitter_user_timeline":
                     this.handle_listener();
@@ -61,18 +59,18 @@ class Twitter_Module extends Gomedia_Dynamic{
                     this.handle_listener();
             }
         } else { //if we have hardcoded parameters
-            let params = 'method=' + this.method + '&hashtag=' + this.hashtags[0] + '&count=' + this.count + '&hashtag2=' + this.hashtags[1] + '&hashtag3=' + this.hashtags[2]+"&screen_name="+this.handle;
+            let params = 'method=' + this.method + '&hashtag=' + this.hashtags[0] + '&count=' + this.count + '&hashtag2=' + this.hashtags[1] + '&hashtag3=' + this.hashtags[2] + "&screen_name=" + this.handle;
 
-            if(this.method="twitter_user_timeline"){
-              this.handleSubmit(params);
-            }else{
-              this.hashtagSubmit(params);
+            if (this.method = "twitter_user_timeline") {
+                this.handleSubmit(params);
+            } else {
+                this.hashtagSubmit(params);
             }
 
         }
     }
     handle_listener() {
-        let params = 'method=' + this.method + '&screen_name=' + this.handle + "&count=" + this.count+ "&customer_id=999";
+        let params = 'method=' + this.method + '&screen_name=' + this.handle + "&count=" + this.count + "&customer_id=999";
         this.handleSubmit(params);
 
     }
@@ -81,16 +79,16 @@ class Twitter_Module extends Gomedia_Dynamic{
         this.hashtagSubmit(params);
     }
     handleSubmit(dataString) {
-        this.ajax_datastring_URL_callback(dataString, this.twitterInterfaceUrl, (data)=>{
-          let obj = JSON.parse(data);
-          this.parseTwitterData(obj);
+        this.ajax_datastring_URL_callback(dataString, this.twitterInterfaceUrl, (data) => {
+            let obj = JSON.parse(data);
+            this.parseTwitterData(obj);
         });
     }
     hashtagSubmit(dataString) {
 
-        this.ajax_datastring_URL_callback(dataString, this.twitterInterfaceUrl,(data)=>{
-          let obj = JSON.parse(data);
-          this.parseTwitterData(obj)
+        this.ajax_datastring_URL_callback(dataString, this.twitterInterfaceUrl, (data) => {
+            let obj = JSON.parse(data);
+            this.parseTwitterData(obj)
         });
     }
     parseTwitterData(obj) {
@@ -102,12 +100,12 @@ class Twitter_Module extends Gomedia_Dynamic{
             let created_date = new Date(Date.parse(status.created_at));
             let created_month = this.numberToMonth(created_date.getMonth());
             let created_day = created_date.getDate();
-            singleStatus["created_at"] = created_month +' '+ created_day;
+            singleStatus["created_at"] = created_month + ' ' + created_day;
             singleStatus["userName"] = status.user.name;
             singleStatus["userLocation"] = status.user.location;
             singleStatus["text"] = status.text;
-            if(status.entities.hashtags.length >=1){
-              singleStatus["hashtag"] = status.entities.hashtags[0].text
+            if (status.entities.hashtags.length >= 1) {
+                singleStatus["hashtag"] = status.entities.hashtags[0].text
             };
             if (status.entities.media !== undefined) {
                 singleStatus["imageUrl"] = status.entities.media[0].media_url_https;
@@ -137,12 +135,11 @@ class Twitter_Module extends Gomedia_Dynamic{
             let randomIndex = Math.floor((Math.random() * numOfItems));
             if ($('#scene' + sceneNumber).find(DOMelements.handleElement).length == 1 && $('#scene' + sceneNumber).find(DOMelements.textElement).length == 1) {
                 if (counter > twitterData.length) {
-                  //loop back to first tweet if there are more scenes than tweets.
+                    //loop back to first tweet if there are more scenes than tweets.
                     counter = 0
                 }
                 let item = twitterData[counter];
                 counter++;
-
                 let scene = '#scene' + sceneNumber;
                 $(scene + ' ' + DOMelements.handleElement).html(item.userName);
                 $(scene + ' ' + DOMelements.textElement).html(item.text);

@@ -15,14 +15,16 @@ class Free_Dictionary_Module extends Gomedia_Dynamic {
                 this[key] = optionsData[key];
             }
         }
-        if(this.checkParams === true){
-          this.feedId = this.getParameterByName('feed-id') !==""? this.getParameterByName('feed-id') : this.feedId;
+        if (this.checkParams === true) {
+            this.feedId = this.getParameterByName('feed-id') !== "" ? this.getParameterByName('feed-id') : this.feedId;
         }
         //Set's a BehaviorSubject with initial isLoaded value set to "false";
         //isLoaded$ is the observable that is subscribed to in dynamicData() in main.js
         //After the script is loaded and the data is secured, onCompleted() is called to complete the observable sequence in the callback of the ajax call at the bottom of init().
         //We need this to know when it is okay to begin parsing the data we've received from the url.  For further reading on RxJS: https://xgrommx.github.io/rx-book/content/resources/reactive_libraries/rx.html
-        this.scriptStatus$ = new Rx.BehaviorSubject({isLoaded: false});
+        this.scriptStatus$ = new Rx.BehaviorSubject({
+            isLoaded: false
+        });
         this.isLoaded$ = this.scriptStatus$.map(status => status.isLoaded);
     }
     init() {
@@ -53,15 +55,16 @@ class Free_Dictionary_Module extends Gomedia_Dynamic {
     populatePage(cleanItems) {
         //in here, display result is checked for any bad words.  If none found, populates the elements on screen with dynamic data
         let cutOff = 0;
+
         if (cleanItems.length > 0) {
             let scenes = $('.scene');
             for (let i = 0; i < scenes.length; i++) {
-                let randomIndex = Math.floor((Math.random() * cleanItems.length));
-                let randomItem = cleanItems.splice(randomIndex, 1);
                 let sceneNumber = i + 1;
                 let titleElement = this.DOMelements.titleElement;
                 let descriptionElement = this.DOMelements.descriptionElement;
-                if ($('#scene' + sceneNumber).find(titleElement).length >= 1 && $('#scene' + sceneNumber).find(descriptionElement).length >= 1) {
+                if ($('#scene' + sceneNumber).find(titleElement).length >= 1 && $('#scene' + sceneNumber).find(descriptionElement).length >= 1 && cleanItems.length !==0) {
+                    let randomIndex = Math.floor((Math.random() * cleanItems.length));
+                    let randomItem = cleanItems.splice(randomIndex, 1);
                     $('#scene' + sceneNumber + ' ' + titleElement).html(randomItem[0].title);
                     let description_img = randomItem[0].description.value;
                     let description_no_img = description_img.replace(/<img .*?>/g, "");
@@ -71,7 +74,7 @@ class Free_Dictionary_Module extends Gomedia_Dynamic {
             this.addOnFunctions();
             this.removeDynamicScripts();
         } else {
-          console.error("No clean items for display.")
+            console.error("No clean items for display.")
         }
     }
 }

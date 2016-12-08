@@ -1,8 +1,72 @@
+<html>
+
 <head>
+	<meta charset="UTF-8">
 	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
 
 	<!-- GoMedia Dynamic Global Functions -->
-	<script src="js/gomedia-dynamic-util-2.0.js"></script>
+	<script src="js/gomedia-dynamic-util-2.0.js">
+		$(window).load(function() {
+			var original = $('#Stage').width();
+			$('#Stage').width(0);
+			setTimeout(function() {
+				$('#Stage').width(original);
+				playScenes();
+			}, 100);
+		});
+		$.Edge = {
+			symbol: {}
+		};
+		$.Edge.symbol.get = function(el) {
+			return listener;
+		};
+		var scenes = [];
+		var index = 0;
+		var defaultDuration = 5;
+		var sceneDuration = 10;
+		var playTimeout;
+		var listener = {
+			play: function(scenePosition) {
+				stopPlaying();
+				setTimeout(function() {
+					playScenes();
+				}, 150);
+				return 'from start';
+			}
+		}
+
+		function stopPlaying() {
+			clearTimeout(playTimeout);
+			totalDuration = 0;
+			index = 0;
+			$('.scene').css('display', 'none');
+			$('.scene').removeClass('animated').removeClass('fadeOut');
+		}
+
+		function playScenes() {
+			if (typeof parent.GoMediaHtml != "undefined") {
+				return;
+			}
+			$('.scene').removeClass('fadeIn').removeClass('fadeOut');
+			scenes = $('.scene');
+			var element = scenes[index];
+			playScene(element);
+		}
+
+		function playScene(element) {
+			var duration = $(element).attr('data-duration');
+			sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
+			// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
+			$(element).css('display', 'block');
+			$(element).addClass('animated').addClass('fadeIn');
+			playTimeout = setTimeout(function() {
+				$(this).addClass('animated').addClass('fadeOut');
+				var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
+				index++;
+				playScene(nextElement);
+			}.bind(element), sceneDuration * 1000);
+		}
+	</script>
 	<!-- THIS CONTENT SERIES -->
 	<script src="js/twitter.js"></script>
 	<!-- THIS CONTENT -->
@@ -17,66 +81,66 @@
 		}
 	</style>
 	<script>
-			$(window).load(function() {
-					var original = $('#Stage').width();
-					$('#Stage').width(0);
-					setTimeout(function() {
-							$('#Stage').width(original);
-							playScenes();
-					}, 100);
-			});
-			$.Edge = {
-					symbol: {}
-			};
-			$.Edge.symbol.get = function(el) {
-					return listener;
-			};
-			var scenes = [];
-			var index = 0;
-			var defaultDuration = 5;
-			var sceneDuration = 10;
-			var playTimeout;
-			var listener = {
-					play: function(scenePosition) {
-							stopPlaying();
-							setTimeout(function() {
-									playScenes();
-							}, 150);
-							return 'from start';
-					}
+		$(window).load(function() {
+			var original = $('#Stage').width();
+			$('#Stage').width(0);
+			setTimeout(function() {
+				$('#Stage').width(original);
+				playScenes();
+			}, 100);
+		});
+		$.Edge = {
+			symbol: {}
+		};
+		$.Edge.symbol.get = function(el) {
+			return listener;
+		};
+		var scenes = [];
+		var index = 0;
+		var defaultDuration = 5;
+		var sceneDuration = 10;
+		var playTimeout;
+		var listener = {
+			play: function(scenePosition) {
+				stopPlaying();
+				setTimeout(function() {
+					playScenes();
+				}, 150);
+				return 'from start';
 			}
+		}
 
-			function stopPlaying() {
-					clearTimeout(playTimeout);
-					totalDuration = 0;
-					index = 0;
-					$('.scene').css('display', 'none');
-					$('.scene').removeClass('animated').removeClass('fadeOut');
-			}
+		function stopPlaying() {
+			clearTimeout(playTimeout);
+			totalDuration = 0;
+			index = 0;
+			$('.scene').css('display', 'none');
+			$('.scene').removeClass('animated').removeClass('fadeOut');
+		}
 
-			function playScenes() {
-					if (typeof parent.GoMediaHtml != "undefined") {
-							return;
-					}
-					$('.scene').removeClass('fadeIn').removeClass('fadeOut');
-					scenes = $('.scene');
-					var element = scenes[index];
-					playScene(element);
+		function playScenes() {
+			if (typeof parent.GoMediaHtml != "undefined") {
+				return;
 			}
+			$('.scene').removeClass('fadeIn').removeClass('fadeOut');
+			scenes = $('.scene');
+			var element = scenes[index];
+			playScene(element);
+		}
 
-			function playScene(element) {
-					var duration = $(element).attr('data-duration');
-					sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
-					// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
-					$(element).css('display', 'block');
-					$(element).addClass('animated').addClass('fadeIn');
-					playTimeout = setTimeout(function() {
-							$(this).addClass('animated').addClass('fadeOut');
-							var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
-							index++;
-							playScene(nextElement);
-					}.bind(element), sceneDuration * 1000);
-			}
+		function playScene(element) {
+			var duration = $(element).attr('data-duration');
+			sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
+			// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
+			$(element).css('display', 'block');
+			$(element).addClass('animated').addClass('fadeIn');
+			playTimeout = setTimeout(function() {
+				$(this).addClass('animated').addClass('fadeOut');
+				var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
+				index++;
+				playScene(nextElement);
+			}.bind(element), sceneDuration * 1000);
+		}
 	</script>
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda">
@@ -87,64 +151,233 @@
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amaranth">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arimo">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Artifika">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Coda">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cousine">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
 </head>
 
 <body style="width: 1920px; height: 1080px;">
-	<div id="Stage" class="GoMedia40-10 stageArea" style="width: 1920px; height: 1080px; overflow: hidden; position: inherit; background-color: black;">
-			<div class="scene" id="scene1" data-index="1" style="display: block;" data-duration="10">
-					<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
-							<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: none; background-color: rgb(35, 53, 115); background-size: 1926.06px 1082.88px; background-position: 0px 0px;" data-orig-height="768px" data-orig-width="1366px"></div>
-					</div>
-
-
-					<div style="clear:both;"></div>
-					<div style="position: absolute; left: 452.303px; top: 373.294px; width: 1092px; height: 343px;" class="animated fadeIn">
-							<div id="Element_1464737308773" class="gomedia-text" style="width: 1092px; height: auto; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-family: Arimo;"><font face="Bowlby One SC"><span style="font-size: 225px; font-family: Arimo;">TWITTER</span></font></div>
-					</div>
+	<div id="Stage" class="GoMedia40-35 stageArea" style="width: 1920px; height: 1080px; overflow: hidden; position: inherit; background-color: black;">
+		<div class="scene" id="scene1" data-index="1" style="display: block;" data-duration="5">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: none; background-color: rgb(30, 187, 230); background-size: 1926.06px 1082.88px; background-position: 0px 0px;" data-orig-height="768px" data-orig-width="1366px"></div>
 			</div>
-			<div class="scene" id="scene2" data-index="2" style="display: none;" data-duration="10">
-					<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
-							<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: none; background-color: rgb(35, 53, 115); background-size: 1926.06px 1082.88px; background-position: 0px 0px;" data-orig-height="768px" data-orig-width="1366px"></div>
-					</div>
 
 
-					<div style="clear:both;"></div>
-					<div style="position:absolute;left:82.31712838343977px;top:82.31712838343977px;">
-							<div id="Element_1480622611754" class="gomedia-text" style="width: 420px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">created_at</div>
-					</div>
-					<div style="position: absolute; left: 87.2561px; top: 167.732px; width: 971px; height: 76px;">
-							<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 971px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">created_at data</div>
-					</div>
-					<div style="position: absolute; left: 93.8415px; top: 377.854px; width: 724px; height: 76px;">
-							<div id="Element_1480622630787" class="gomedia-text" style="width: 724px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">user.name</div>
-					</div>
-					<div style="position: absolute; left: 100.427px; top: 451.207px; width: 973px; height: 76px;">
-							<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 973px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">user.name data</div>
-					</div>
-					<div style="position: absolute; left: 97.1343px; top: 602.585px; width: 724px; height: 76px;">
-							<div id="Element_1480622642858" class="gomedia-text" style="width: 724px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">text</div>
-					</div>
-					<div style="position: absolute; left: 98.7806px; top: 684.439px; width: 978px; height: 76px;">
-							<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 978px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">text data</div>
-					</div>
-					<div style="position: absolute; left: 1112.3px; top: 296.342px; width: 747.44px; height: 747.44px;">
-							<div id="Element_1480622665908" class="gomedia-image image" style="width: 747.44px; height: 747.44px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
-					</div>
-					<div style="position: absolute; left: 1132.68px; top: 108.659px;">
-							<div id="Element_1480622724475" class="gomedia-text" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">hashtag</div>
-					</div>
-					<div style="position: absolute; left: 1129.39px; top: 157.671px;">
-							<div id="Element_1480622732905" class="gomedia-text gomedia-dynamic hashtag" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">hashtag data</div>
-					</div>
-					<div style="position: absolute; left: 1493.23px; top: 104.829px;">
-							<div id="Element_1480622763226" class="gomedia-text" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">width</div>
-					</div>
-					<div style="position: absolute; left: 1498.17px; top: 160.098px;">
-							<div id="Element_1480622768840" class="gomedia-text gomedia-dynamic" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">width data</div>
-					</div>
+			<div style="position: absolute; left: 141.585px; top: -5.81708px; width: 828px; height: 1113px;" class="animated slideInLeft">
+				<div id="Element_1481226975527" class="gomedia-shape" style="width: 828px; height: 1113px; background-color: rgb(198, 237, 242); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
 			</div>
+			<div style="position: absolute;     left: -4.93903px;     top: -1.64637px;     width: 945px;     height: 1113px;    ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated slideInLeft">
+				<div id="Element_1481226866404" class="gomedia-shape" style="width: 945px; height: 1113px; background-color: rgb(52, 127, 137); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="clear:both;"></div>
+
+			<div style="position: absolute;     left: 1136.73px;     top: 463.94px;     width: 357px;     height: 53px;    ; animation-delay:1s; -webkit-animation-delay:1s" class="animated fadeInDown">
+				<div id="Element_1481225215180" class="gomedia-text" style="width: 357px; height: auto; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-family: &quot;Quattrocento Sans&quot;; font-weight: normal; font-size: 60px;"><font face="Bowlby One SC"><span style="font-size: 60px; font-family: &quot;Quattrocento Sans&quot;; font-weight: normal; color: rgb(255, 255, 255);">Lately on</span></font></div>
+			</div>
+			<div style="position: absolute;     left: 200.854px;     top: 367.135px;     width: 477.439px;     height: 388.537px;    ; animation-delay:1.2s; -webkit-animation-delay:1.2s" class="animated fadeIn">
+				<div id="Element_1481226958321" class="gomedia-image" style="width: 477.439px; height: 388.537px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;" data-zappend="after">&nbsp;</div>
+			</div>
+			<div style="position: absolute;     left: 1137.08px;     top: 539.451px;     width: 636.585px;     height: 130.335px;    ; animation-delay:1s; -webkit-animation-delay:1s" class="animated fadeInUp">
+				<div id="Element_1481228390400" class="gomedia-image" style="width: 636.585px; height: 130.335px; background-image: url(images/401231Twitter_logo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;     left: 1469.08px;     top: 265.062px;     width: 253.811px;     height: 268.902px;    ; animation-delay:1.2s; -webkit-animation-delay:1.2s" class="animated bounceIn">
+				<div id="Element_1481228504566" class="gomedia-image" style="width: 253.811px; height: 268.902px; background-image: url(images/401233wordbubble1.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;     left: 1567.86px;     top: 326.799px;     width: 67px;     height: 152px;    ; animation-delay:1.4s; -webkit-animation-delay:1.4s" class="animated bounceIn">
+				<div id="Element_1481228573777" class="gomedia-text" style="width: 67px; height: auto; font-size: 200px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(30, 187, 230);">!
+					<div>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="scene" id="scene2" data-index="2" style="display: none;" data-duration="10">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/19381BG_Abstract_OceanShine2.jpg); background-color: rgb(75, 90, 140); background-size: 1926.06px 1082.88px; background-position: 0px 0px;"
+								data-orig-height="768px" data-orig-width="1366px"></div>
+			</div>
+			<div style="position: absolute;   left: 200.854px;   top: 34.5731px;   width: 344px;   height: 76px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeIn">
+				<div id="Element_1481231811878" class="gomedia-text" style="width: 344px; height: auto; font-size: 35px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-weight: bold;"
+								data-zappend="before">Follow us @gocodigo</div>
+			</div>
+			<div style="position: absolute;    left: 107.561px;    top: 796.084px;    width: 907px;    height: 76px;   ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
+				<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 907px; height: auto; font-size: 44px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);"
+								data-zappend="before">May 18</div>
+			</div>
+			<div style="position: absolute; left: -10.9757px; top: 874.001px; width: 1941px; height: 204px;" class="animated fadeInUp">
+				<div id="Element_1481229584432" class="gomedia-shape" style="width: 1941px; height: 204px; background-color: rgb(255, 255, 255); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 2.19517px; top: 150.091px; width: 1928px; height: 548px;" class="animated fadeInRight">
+				<div id="Element_1481229393282" class="gomedia-shape" style="width: 1928px; height: 548px; background-color: rgb(0, 0, 0); background-image: none; visibility: inherit; box-shadow: none; opacity: 0.5;" data-zappend="before">&nbsp;</div>
+			</div>
+
+
+			<div style="clear:both;"></div>
+
+
+
+			<div style="position: absolute; left: 102.352px; top: 720.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
+				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Codigo</div>
+			</div>
+
+			<div style="position: absolute;    left: 90.2745px;    top: 176.268px;    width: 1105px;    height: 228px;   ; animation-delay:0.7s; -webkit-animation-delay:0.7s" class="animated fadeInLeft">
+				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">Fresh afternoon coffee is happenin' outside the exhibit hall. And Red Bull... https://t.co/8r1JU7E10o</div>
+			</div>
+
+
+
+
+
+			<div style="position: absolute;    left: 1306.02px;    top: 198.11px;    width: 533.415px;    height: 533.415px;   ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated fadeIn">
+				<div id="Element_1480622665908" class="gomedia-image image" style="width: 533.415px; height: 533.415px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;" data-zappend="after">&nbsp;</div>
+			</div>
+			<div style="position: absolute;    left: 1334.34px;    top: 898.903px;    width: 411.586px;    height: 162.988px;   ; animation-delay:2s; -webkit-animation-delay:2s" class="animated fadeIn">
+				<div id="Element_1481231107119" class="gomedia-image" style="width: 411.586px; height: 162.988px; background-image: url(images/327175Logo_small.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;    left: 93.8418px;    top: 982.867px;    width: 491px;    height: 76px;   ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInRight">
+				<div id="Element_1481231155083" class="gomedia-text" style="width: 491px; height: auto; font-size: 24px; line-height: 76px; font-family: Ubuntu; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(92, 92, 92);">Copyright 2016 &gt; Codigo, Twitter.</div>
+			</div>
+			<div style="position: absolute;    left: 88.9028px;    top: 931.086px;    width: 446px;    height: 76px;   ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInLeft">
+				<div id="Element_1481231199967" class="gomedia-text" style="width: 446px; height: auto; font-size: 48px; line-height: 76px; font-family: Ubuntu; word-wrap: break-word; visibility: inherit; font-style: italic; color: rgb(92, 92, 92); box-shadow: none; font-weight: bold;">all systems are go.</div>
+			</div>
+			<div style="position: absolute; left: 1644.7px; top: 4.939px; width: 310px; height: 76px;" class="animated fadeInDown">
+				<div id="Element_1481231565987" class="gomedia-text" style="width: 310px; height: auto; font-size: 30px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none;">Lately on</div>
+			</div>
+			<div style="position: absolute;   left: 1646.79px;   top: 72.4382px;   width: 238.72px;   height: 47.7439px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInDown">
+				<div id="Element_1481231627270" class="gomedia-image" style="width: 238.72px; height: 47.7439px; background-image: url(images/401231Twitter_logo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 93.8415px; top: 29.6341px; width: 93.8415px; height: 100.427px;" class="animated fadeIn">
+				<div id="Element_1481231797504" class="gomedia-image" style="width: 93.8415px; height: 100.427px; background-image: url(images/37222794957Twitter.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+		</div>
+		<div class="scene" id="scene3" data-index="3" style="display: none;" data-duration="10">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/19381BG_Abstract_OceanShine2.jpg); background-color: rgb(75, 90, 140); background-size: 1926.06px 1082.88px; background-position: 0px 0px;"
+								data-orig-height="768px" data-orig-width="1366px"></div>
+			</div>
+			<div style="position: absolute;   left: 200.854px;   top: 34.5731px;   width: 344px;   height: 76px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeIn">
+				<div id="Element_1481231811878" class="gomedia-text" style="width: 344px; height: auto; font-size: 35px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-weight: bold;"
+								data-zappend="before">Follow us @gocodigo</div>
+			</div>
+			<div style="position: absolute;    left: 107.561px;    top: 796.084px;    width: 907px;    height: 76px;   ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
+				<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 907px; height: auto; font-size: 44px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);"
+								data-zappend="before">May 18</div>
+			</div>
+			<div style="position: absolute; left: -10.9757px; top: 874.001px; width: 1941px; height: 204px;" class="animated fadeInUp">
+				<div id="Element_1481229584432" class="gomedia-shape" style="width: 1941px; height: 204px; background-color: rgb(255, 255, 255); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 2.19517px; top: 150.091px; width: 1928px; height: 548px;" class="animated fadeInLeft">
+				<div id="Element_1481229393282" class="gomedia-shape" style="width: 1928px; height: 548px; background-color: rgb(0, 0, 0); background-image: none; visibility: inherit; box-shadow: none; opacity: 0.5;" data-zappend="before">&nbsp;</div>
+			</div>
+
+
+			<div style="clear:both;"></div>
+
+
+
+			<div style="position: absolute; left: 102.352px; top: 720.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
+				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Codigo</div>
+			</div>
+
+			<div style="position: absolute;    left: 90.2745px;    top: 176.268px;    width: 1105px;    height: 228px;   ; animation-delay:0.7s; -webkit-animation-delay:0.7s" class="animated fadeInLeft">
+				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">@Accenture says the bank of the future will be 100% digital, using mobile, social, and analytic technology. And using #Blockchain. #fbforum</div>
+			</div>
+
+
+
+
+
+			<div style="position: absolute;    left: 1306.02px;    top: 198.11px;    width: 533.415px;    height: 533.415px;   ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated fadeIn">
+				<div id="Element_1480622665908" class="gomedia-image image" style="width: 533.415px; height: 533.415px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;" data-zappend="after">&nbsp;</div>
+			</div>
+			<div style="position: absolute;    left: 1334.34px;    top: 898.903px;    width: 411.586px;    height: 162.988px;   ; animation-delay:2s; -webkit-animation-delay:2s" class="animated fadeIn">
+				<div id="Element_1481231107119" class="gomedia-image" style="width: 411.586px; height: 162.988px; background-image: url(images/327175Logo_small.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;    left: 93.8418px;    top: 982.867px;    width: 491px;    height: 76px;   ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInRight">
+				<div id="Element_1481231155083" class="gomedia-text" style="width: 491px; height: auto; font-size: 24px; line-height: 76px; font-family: Ubuntu; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(92, 92, 92);">Copyright 2016 &gt; Codigo, Twitter.</div>
+			</div>
+			<div style="position: absolute;    left: 88.9028px;    top: 931.086px;    width: 446px;    height: 76px;   ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInLeft">
+				<div id="Element_1481231199967" class="gomedia-text" style="width: 446px; height: auto; font-size: 48px; line-height: 76px; font-family: Ubuntu; word-wrap: break-word; visibility: inherit; font-style: italic; color: rgb(92, 92, 92); box-shadow: none; font-weight: bold;">all systems are go.</div>
+			</div>
+			<div style="position: absolute; left: 1644.7px; top: 4.939px; width: 310px; height: 76px;" class="animated fadeInDown">
+				<div id="Element_1481231565987" class="gomedia-text" style="width: 310px; height: auto; font-size: 30px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none;">Lately on</div>
+			</div>
+			<div style="position: absolute;   left: 1646.79px;   top: 72.4382px;   width: 238.72px;   height: 47.7439px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInDown">
+				<div id="Element_1481231627270" class="gomedia-image" style="width: 238.72px; height: 47.7439px; background-image: url(images/401231Twitter_logo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 93.8415px; top: 29.6341px; width: 93.8415px; height: 100.427px;" class="animated fadeIn">
+				<div id="Element_1481231797504" class="gomedia-image" style="width: 93.8415px; height: 100.427px; background-image: url(images/37222794957Twitter.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+		</div>
+		<div class="scene" id="scene4" data-index="4" style="display: none;" data-duration="10">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/19381BG_Abstract_OceanShine2.jpg); background-color: rgb(75, 90, 140); background-size: 1926.06px 1082.88px; background-position: 0px 0px;"
+								data-orig-height="768px" data-orig-width="1366px"></div>
+			</div>
+			<div style="position: absolute;   left: 200.854px;   top: 34.5731px;   width: 344px;   height: 76px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeIn">
+				<div id="Element_1481231811878" class="gomedia-text" style="width: 344px; height: auto; font-size: 35px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-weight: bold;"
+								data-zappend="before">Follow us @gocodigo</div>
+			</div>
+			<div style="position: absolute;    left: 107.561px;    top: 796.084px;    width: 907px;    height: 76px;   ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
+				<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 907px; height: auto; font-size: 44px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);"
+								data-zappend="before">May 18</div>
+			</div>
+			<div style="position: absolute; left: -10.9757px; top: 874.001px; width: 1941px; height: 204px;" class="animated fadeInUp">
+				<div id="Element_1481229584432" class="gomedia-shape" style="width: 1941px; height: 204px; background-color: rgb(255, 255, 255); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 2.19517px; top: 150.091px; width: 1928px; height: 548px;" class="animated fadeInRight">
+				<div id="Element_1481229393282" class="gomedia-shape" style="width: 1928px; height: 548px; background-color: rgb(0, 0, 0); background-image: none; visibility: inherit; box-shadow: none; opacity: 0.5;" data-zappend="before">&nbsp;</div>
+			</div>
+
+
+			<div style="clear:both;"></div>
+
+
+
+			<div style="position: absolute; left: 102.352px; top: 720.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
+				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Codigo</div>
+			</div>
+
+			<div style="position: absolute;    left: 90.2745px;    top: 176.268px;    width: 1105px;    height: 228px;   ; animation-delay:0.7s; -webkit-animation-delay:0.7s" class="animated fadeInLeft">
+				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">70% of all Americans prefer Mobile to branch banking for basic needs and 81% wouldn't switch banks if their local branch closed. #fbforum</div>
+			</div>
+
+
+
+
+
+			<div style="position: absolute;    left: 1306.02px;    top: 198.11px;    width: 533.415px;    height: 533.415px;   ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated fadeIn">
+				<div id="Element_1480622665908" class="gomedia-image image" style="width: 533.415px; height: 533.415px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;" data-zappend="after">&nbsp;</div>
+			</div>
+			<div style="position: absolute;    left: 1334.34px;    top: 898.903px;    width: 411.586px;    height: 162.988px;   ; animation-delay:2s; -webkit-animation-delay:2s" class="animated fadeIn">
+				<div id="Element_1481231107119" class="gomedia-image" style="width: 411.586px; height: 162.988px; background-image: url(images/327175Logo_small.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;    left: 93.8418px;    top: 982.867px;    width: 491px;    height: 76px;   ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInRight">
+				<div id="Element_1481231155083" class="gomedia-text" style="width: 491px; height: auto; font-size: 24px; line-height: 76px; font-family: Ubuntu; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(92, 92, 92);">Copyright 2016 &gt; Codigo, Twitter.</div>
+			</div>
+			<div style="position: absolute;    left: 88.9028px;    top: 931.086px;    width: 446px;    height: 76px;   ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInLeft">
+				<div id="Element_1481231199967" class="gomedia-text" style="width: 446px; height: auto; font-size: 48px; line-height: 76px; font-family: Ubuntu; word-wrap: break-word; visibility: inherit; font-style: italic; color: rgb(92, 92, 92); box-shadow: none; font-weight: bold;">all systems are go.</div>
+			</div>
+			<div style="position: absolute; left: 1644.7px; top: 4.939px; width: 310px; height: 76px;" class="animated fadeInDown">
+				<div id="Element_1481231565987" class="gomedia-text" style="width: 310px; height: auto; font-size: 30px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none;">Lately on</div>
+			</div>
+			<div style="position: absolute;   left: 1646.79px;   top: 72.4382px;   width: 238.72px;   height: 47.7439px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInDown">
+				<div id="Element_1481231627270" class="gomedia-image" style="width: 238.72px; height: 47.7439px; background-image: url(images/401231Twitter_logo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 93.8415px; top: 29.6341px; width: 93.8415px; height: 100.427px;" class="animated fadeIn">
+				<div id="Element_1481231797504" class="gomedia-image" style="width: 93.8415px; height: 100.427px; background-image: url(images/37222794957Twitter.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+			</div>
+		</div>
+
 	</div>
 
 
 
+
 </body>
+
+</html>
