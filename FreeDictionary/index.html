@@ -1,0 +1,158 @@
+<head>
+	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+	<script src="js/vendor/rx.all.min.js"></script>
+	<!-- GoMedia Dynamic Global Functions -->
+	<script src="js/gomedia-dynamic-util-2.0.js"></script>
+	<!-- THIS CONTENT SERIES -->
+	<script src="js/fd-feed-module.js"></script>
+	<!-- THIS CONTENT -->
+	<script type="text/javascript" src="js/main.js"></script>
+	<link rel="stylesheet" href="css/animate.css">
+	<style>
+		body {
+			position: absolute;
+			margin: 0px;
+		}
+	</style>
+	<script>
+		$(window).load(function() {
+			var original = $('#Stage').width();
+			$('#Stage').width(0);
+			setTimeout(function() {
+				$('#Stage').width(original);
+				playScenes();
+			}, 100);
+		});
+		$.Edge = {
+			symbol: {}
+		};
+		$.Edge.symbol.get = function(el) {
+			return listener;
+		};
+		var scenes = [];
+		var index = 0;
+		var defaultDuration = 5;
+		var sceneDuration = 10;
+		var playTimeout;
+		var listener = {
+			play: function(scenePosition) {
+				stopPlaying();
+				setTimeout(function() {
+					playScenes();
+				}, 150);
+				return 'from start';
+			}
+		};
+
+		function stopPlaying() {
+			clearTimeout(playTimeout);
+			totalDuration = 0;
+			index = 0;
+			$('.scene').css('display', 'none');
+			$('.scene').removeClass('animated').removeClass('fadeOut');
+		}
+
+		function playScenes() {
+			if (typeof parent.GoMediaHtml != "undefined") {
+				return;
+			}
+			scenes = $('.scene');
+			var element = scenes[index];
+			playScene(element);
+		}
+
+		function playScene(element) {
+			var duration = $(element).attr('data-duration');
+			sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
+			// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
+			$(element).css('display', 'block');
+			$(element).addClass('animated').addClass('fadeIn');
+			playTimeout = setTimeout(function() {
+				$(element).addClass('animated').addClass('fadeOut');
+				var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
+				index++;
+				playScene(nextElement);
+			}, sceneDuration * 1000);
+		}
+
+
+	</script>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Asset">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Limelight">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bevan">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bowlby+One+SC">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Luckiest+Guy">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Paytone+One">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cedarville+Cursive">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Rock+Salt">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Shadows+Into+Light">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=&quot;Paytone One&quot;">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=&quot;Shadows Into Light&quot;">
+</head>
+
+<body style="width: 1920px; height: 1080px;">
+	<div id="Stage" class="GoMedia40-30 stageArea" style="width: 1920px; height: 1080px; overflow: hidden; position: inherit;">
+		<div class="scene" id="scene1" data-index="1" style="display: block;" data-duration="1">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/335924BG_Abstract_BrownLeather.jpg); background-color: rgb(223, 223, 223); background-size: 1914.06px 1066.88px; background-position: 0px 0px;"
+								data-orig-height="768px" data-orig-width="1366px"></div>
+			</div>
+
+			<div style="clear:both;"></div>
+			<div style="position: absolute; left: 751.942px; top: 8.87481px; width: 1304px; height: 449px; animation-delay: 0.5s;" class="animated fadeInLeft">
+				<div id="Element_1464737308773" class="gomedia-text" style="width: 1304px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); font-family: &quot;Paytone One&quot;; box-shadow: none;">
+					<font color="#efb31a"><span style="font-size: 100px; line-height: 200px;"><i>Free Dictionary</i></span></font>
+				</div>
+			</div>
+			<div style="position: absolute; left: 1257.27px; top: 756.407px; width: 734px; height: 114px; animation-delay: 1.5s;" class="animated fadeInLeft">
+				<div id="Element_1467736679365" class="gomedia-text gomedia-dynamic feed" style="width: 734px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Shadows Into Light&quot;; font-size: 80px; box-shadow: none;">
+					<span class="" style="color: rgb(245, 228, 186); font-family: &quot;Shadows Into Light&quot;; font-size: 80px;">default template</span>
+				</div>
+			</div>
+			<div style="position: absolute; left: 104.652px; top: 284.349px; width: 1061.76px; height: 598.379px;" class="animated flipInY">
+				<div id="Element_1467736379763" class="gomedia-image" style="width: 1061.76px; height: 598.379px; visibility: inherit; box-shadow: none; background-image: url(images/195374BG_Copyspace_DesktopBookReds.jpg); background-size: 100%; background-repeat: no-repeat;"
+								data-zappend="after">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+		<div class="scene" id="scene2" data-index="2" data-duration="20" style="display: none;">
+			<div style="position:absolute;left:0px;top:0px;width:100%;height:100%;">
+				<div class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/335924BG_Abstract_BrownLeather.jpg); background-color: rgb(223, 223, 223); background-size: 2390.5px 1344px; background-position: -430.29px -241.92px;" data-orig-height="768px"
+								data-orig-width="1366px"></div>
+			</div>
+			<div style="position: absolute; left: -4.94658px; top: 390.779px; width: 1932px; height: 694px;" class="animated fadeInDown">
+				<div id="Element_1467736843182" class="gomedia-shape" style="width: 1932px; height: 694px; visibility: inherit; opacity: 0.73; box-shadow: none; background-image: none; background-color: rgb(64, 37, 12);">
+					&nbsp;
+				</div>
+			</div>
+			<div style="position: absolute; left: 92.9403px; top: 61.0748px; width: 813px; height: 280px; animation-delay: 0.5s;" class="animated fadeInLeft">
+				<div id="Element_1467743193886" class="gomedia-text" style="width: 813px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Paytone One&quot;; font-size: 75px; box-shadow: none;">
+					<span class="" style="color: rgb(239, 179, 26);">Debug</span>
+				</div>
+			</div>
+			<div style="position: absolute; left: 74.8299px; top: 284.624px; width: 829px; height: 79px; animation-delay: 1s;" class="animated fadeInLeft">
+				<div id="Element_1467743223793" class="gomedia-dynamic title" style="width: 829px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Paytone One&quot;; font-size: 57px; color: rgb(242, 241, 244); box-shadow: none;">Default Name - nothing displayed</div>
+			</div>
+
+
+
+			<div style="position: absolute; left: 72.677px; top: 390.809px; width: 1759px; height: 336px; animation-delay: 2s;" class="animated zoomIn">
+				<div id="Element_1467743688989" class="gomedia-dynamic description" style="width: 1759px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-size: 42px; font-family: &quot;Shadows Into Light&quot;; color: rgb(245, 228, 186); box-shadow: none;">Default Description -- nothing displayed
+				</div>
+			</div>
+
+			<div style="position: absolute; left: 77.4415px; top: 743.545px; width: 1750px; height: 116px;">
+				<div id="Element_1469722971059" class="gomedia-text" style="width: 1750px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-size: 50px; color: rgb(249, 249, 249); box-shadow: none;">
+					<div>1) do not delete the image, or the 2 previous text fields.( Feed Name is optional)</div>2) Dowload and swap out&nbsp;var CURRENT_FEED &nbsp;
+					<div>options: word,history,article, or birthday in free-dictionary.js</div>
+					<div>3) remove previous proxy js included by the default template in index.html</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

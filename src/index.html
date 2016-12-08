@@ -1,0 +1,150 @@
+<head>
+	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+
+	<!-- GoMedia Dynamic Global Functions -->
+	<script src="js/gomedia-dynamic-util-2.0.js"></script>
+	<!-- THIS CONTENT SERIES -->
+	<script src="js/twitter.js"></script>
+	<!-- THIS CONTENT -->
+	<script type="text/javascript" src="js/main.js"></script>
+
+
+	<link rel="stylesheet" href="css/animate.css">
+	<style>
+		body {
+			position: absolute;
+			margin: 0px;
+		}
+	</style>
+	<script>
+			$(window).load(function() {
+					var original = $('#Stage').width();
+					$('#Stage').width(0);
+					setTimeout(function() {
+							$('#Stage').width(original);
+							playScenes();
+					}, 100);
+			});
+			$.Edge = {
+					symbol: {}
+			};
+			$.Edge.symbol.get = function(el) {
+					return listener;
+			};
+			var scenes = [];
+			var index = 0;
+			var defaultDuration = 5;
+			var sceneDuration = 10;
+			var playTimeout;
+			var listener = {
+					play: function(scenePosition) {
+							stopPlaying();
+							setTimeout(function() {
+									playScenes();
+							}, 150);
+							return 'from start';
+					}
+			}
+
+			function stopPlaying() {
+					clearTimeout(playTimeout);
+					totalDuration = 0;
+					index = 0;
+					$('.scene').css('display', 'none');
+					$('.scene').removeClass('animated').removeClass('fadeOut');
+			}
+
+			function playScenes() {
+					if (typeof parent.GoMediaHtml != "undefined") {
+							return;
+					}
+					$('.scene').removeClass('fadeIn').removeClass('fadeOut');
+					scenes = $('.scene');
+					var element = scenes[index];
+					playScene(element);
+			}
+
+			function playScene(element) {
+					var duration = $(element).attr('data-duration');
+					sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
+					// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
+					$(element).css('display', 'block');
+					$(element).addClass('animated').addClass('fadeIn');
+					playTimeout = setTimeout(function() {
+							$(this).addClass('animated').addClass('fadeOut');
+							var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
+							index++;
+							playScene(nextElement);
+					}.bind(element), sceneDuration * 1000);
+			}
+	</script>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Asset">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Limelight">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bevan">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bowlby+One+SC">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Anonymous+Pro">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Amaranth">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arimo">
+</head>
+
+<body style="width: 1920px; height: 1080px;">
+	<div id="Stage" class="GoMedia40-10 stageArea" style="width: 1920px; height: 1080px; overflow: hidden; position: inherit; background-color: black;">
+			<div class="scene" id="scene1" data-index="1" style="display: block;" data-duration="10">
+					<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+							<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: none; background-color: rgb(35, 53, 115); background-size: 1926.06px 1082.88px; background-position: 0px 0px;" data-orig-height="768px" data-orig-width="1366px"></div>
+					</div>
+
+
+					<div style="clear:both;"></div>
+					<div style="position: absolute; left: 452.303px; top: 373.294px; width: 1092px; height: 343px;" class="animated fadeIn">
+							<div id="Element_1464737308773" class="gomedia-text" style="width: 1092px; height: auto; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-family: Arimo;"><font face="Bowlby One SC"><span style="font-size: 225px; font-family: Arimo;">TWITTER</span></font></div>
+					</div>
+			</div>
+			<div class="scene" id="scene2" data-index="2" style="display: none;" data-duration="10">
+					<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+							<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: none; background-color: rgb(35, 53, 115); background-size: 1926.06px 1082.88px; background-position: 0px 0px;" data-orig-height="768px" data-orig-width="1366px"></div>
+					</div>
+
+
+					<div style="clear:both;"></div>
+					<div style="position:absolute;left:82.31712838343977px;top:82.31712838343977px;">
+							<div id="Element_1480622611754" class="gomedia-text" style="width: 420px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">created_at</div>
+					</div>
+					<div style="position: absolute; left: 87.2561px; top: 167.732px; width: 971px; height: 76px;">
+							<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 971px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">created_at data</div>
+					</div>
+					<div style="position: absolute; left: 93.8415px; top: 377.854px; width: 724px; height: 76px;">
+							<div id="Element_1480622630787" class="gomedia-text" style="width: 724px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">user.name</div>
+					</div>
+					<div style="position: absolute; left: 100.427px; top: 451.207px; width: 973px; height: 76px;">
+							<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 973px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">user.name data</div>
+					</div>
+					<div style="position: absolute; left: 97.1343px; top: 602.585px; width: 724px; height: 76px;">
+							<div id="Element_1480622642858" class="gomedia-text" style="width: 724px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">text</div>
+					</div>
+					<div style="position: absolute; left: 98.7806px; top: 684.439px; width: 978px; height: 76px;">
+							<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 978px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">text data</div>
+					</div>
+					<div style="position: absolute; left: 1112.3px; top: 296.342px; width: 747.44px; height: 747.44px;">
+							<div id="Element_1480622665908" class="gomedia-image image" style="width: 747.44px; height: 747.44px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
+					</div>
+					<div style="position: absolute; left: 1132.68px; top: 108.659px;">
+							<div id="Element_1480622724475" class="gomedia-text" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">hashtag</div>
+					</div>
+					<div style="position: absolute; left: 1129.39px; top: 157.671px;">
+							<div id="Element_1480622732905" class="gomedia-text gomedia-dynamic hashtag" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">hashtag data</div>
+					</div>
+					<div style="position: absolute; left: 1493.23px; top: 104.829px;">
+							<div id="Element_1480622763226" class="gomedia-text" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">width</div>
+					</div>
+					<div style="position: absolute; left: 1498.17px; top: 160.098px;">
+							<div id="Element_1480622768840" class="gomedia-text gomedia-dynamic" style="width: 420px; height: auto; font-size: 36px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">width data</div>
+					</div>
+			</div>
+	</div>
+
+
+
+</body>
