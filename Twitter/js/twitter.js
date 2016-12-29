@@ -29,9 +29,10 @@ class Twitter_Module extends Gomedia_Dynamic {
                 ] : this.hashtags
             } else {
                 this.handle = this.getParameterByName('handle') !== "" ? this.getParameterByName('handle') : this.handle;
+
             }
             if (this.count == "" || this.count == undefined) {
-                this.count = "3";
+                this.count = "10";
             }
             if (this.hashtags.filter((hashtag) => {
                     return hashtag == ""
@@ -60,7 +61,6 @@ class Twitter_Module extends Gomedia_Dynamic {
             }
         } else { //if we have hardcoded parameters
             let params = 'method=' + this.method + '&hashtag=' + this.hashtags[0] + '&count=' + this.count + '&hashtag2=' + this.hashtags[1] + '&hashtag3=' + this.hashtags[2] + "&screen_name=" + this.handle;
-
             if (this.method = "twitter_user_timeline") {
                 this.handleSubmit(params);
             } else {
@@ -71,11 +71,13 @@ class Twitter_Module extends Gomedia_Dynamic {
     }
     handle_listener() {
         let params = 'method=' + this.method + '&screen_name=' + this.handle + "&count=" + this.count + "&customer_id=999";
+
         this.handleSubmit(params);
 
     }
     hashtag_listener() {
         let params = 'method=' + this.method + '&hashtag=' + this.hashtags[0] + '&count=' + this.count + '&hashtag2=' + this.hashtags[1] + '&hashtag3=' + this.hashtags[2];
+
         this.hashtagSubmit(params);
     }
     handleSubmit(dataString) {
@@ -85,7 +87,7 @@ class Twitter_Module extends Gomedia_Dynamic {
         });
     }
     hashtagSubmit(dataString) {
-
+        console.log(dataString);
         this.ajax_datastring_URL_callback(dataString, this.twitterInterfaceUrl, (data) => {
             let obj = JSON.parse(data);
             this.parseTwitterData(obj)
@@ -102,8 +104,10 @@ class Twitter_Module extends Gomedia_Dynamic {
             let created_day = created_date.getDate();
             singleStatus["created_at"] = created_month + ' ' + created_day;
             singleStatus["userName"] = status.user.name;
+            singleStatus["handle"] = status.user.screen_name;
             singleStatus["userLocation"] = status.user.location;
             singleStatus["text"] = status.text;
+            singleStatus["reach"] = status.user.followers_count;
             if (status.entities.hashtags.length >= 1) {
                 singleStatus["hashtag"] = status.entities.hashtags[0].text
             };
@@ -116,11 +120,15 @@ class Twitter_Module extends Gomedia_Dynamic {
             }
             twitterData.push(singleStatus);
         });
-        if (twitterData.length < 1) {
+        //Let's put a filter in there...
+        let filteredData = twitterData.filter(oneTweet=>{
+          return !(this.filterContent(oneTweet.text) && !this.filterContent(oneTweet.hashtag))
+        });
+        if (filteredData.length < 1) {
             // return this.twitter_init();
-            return console.log("You've got no tweets");
+            return console.error("You've got no tweets");
         }
-        this.populatePage(twitterData)
+        this.populatePage(filteredData)
     }
     populatePage(twitterData) {
         let DOMelements = this.DOMelements;
@@ -129,11 +137,11 @@ class Twitter_Module extends Gomedia_Dynamic {
         let counter = 0;
         const numOfItems = twitterData.length;
         console.log(twitterData);
-
         for (let i = 0; i < scenes.length; i++) {
             let sceneNumber = i + 1;
             let randomIndex = Math.floor((Math.random() * numOfItems));
-            if ($('#scene' + sceneNumber).find(DOMelements.handleElement).length == 1 && $('#scene' + sceneNumber).find(DOMelements.textElement).length == 1) {
+            //If the scene contains the element that receives tweet text, then populate data.
+            if ($('#scene' + sceneNumber).find(DOMelements.textElement).length == 1) {
                 if (counter > twitterData.length) {
                     //loop back to first tweet if there are more scenes than tweets.
                     counter = 0
@@ -141,12 +149,16 @@ class Twitter_Module extends Gomedia_Dynamic {
                 let item = twitterData[counter];
                 counter++;
                 let scene = '#scene' + sceneNumber;
-                $(scene + ' ' + DOMelements.handleElement).html(item.userName);
+                $(scene + ' ' + DOMelements.nameElement).html(item.userName);
+                $(scene + ' ' + DOMelements.handleElement).html(`@${item.handle}`);
                 $(scene + ' ' + DOMelements.textElement).html(item.text);
                 $(scene + ' ' + DOMelements.dateElement).html(item.created_at);
                 $(scene + ' ' + DOMelements.hashtagElement).html(item.hashtag);
+                $(scene + ' ' + DOMelements.reachElement).html(item.reach);
                 if ($(scene).find(DOMelements.imageElement).length == 1 & item.imageUrl !== undefined) {
                     $(scene + ' ' + DOMelements.imageElement).css('background-image', 'url(' + item.imageUrl + ')');
+                }else{
+                  $(scene + ' ' + DOMelements.imageElement).css('background-image', 'url('+this.defaultImageUrl+')')
                 }
             };
         }

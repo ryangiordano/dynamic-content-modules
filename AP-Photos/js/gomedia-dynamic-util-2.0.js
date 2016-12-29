@@ -44,7 +44,7 @@ class Gomedia_Dynamic{
       return JSON.parse(JSON.stringify(result));
   }
   filterContent(string) {
-      var filter = ["abortion", "bloody", "boobs", "breasts", "butt", "cannibal", "condom", "cruelty", "dead", "dick", "ejaculate", "executed","fatal","fatally","fornicate", "fuck", "homicide","kill","kills", "killed","killing", "masturbate", "manslaughter","molest", "murder", "orgasm", "panty", "pedophile", "penis", "porn", "prostitute", "pussy", "rape", "rapist", "scrotum", "semen", "sex", "shit", "shooting", "slain", "slaying", "slayings", "sodomy", "stabbed", "stabbing", "strangled", "suicide", "tampon", "testicle", "topless", "vagina", "vasectomy", "viagra", "x-rated", "xxx"];
+      var filter = ["abortion", "bloody", "boobs", "breasts", "butt", "cannibal", "condom", "cruelty", "dead", "dick", "ejaculate", "fatal","fatally","fornicate", "fuck", "homicide","kill","kills", "killed", "masturbate", "manslaughter","molest", "murder", "orgasm", "panty", "pedophile", "penis", "porn", "prostitute", "pussy", "rape", "rapist", "scrotum", "semen", "sex", "shit", "shooting", "slain", "slaying", "slayings", "sodomy", "stabbed", "stabbing", "strangled", "suicide", "tampon", "testicle", "topless", "vagina", "vasectomy", "viagra", "x-rated", "xxx"];
       let res;
       if (typeof string != "undefined") {
           res = string.split(" ");

@@ -44,11 +44,16 @@ class State_News_Module extends Gomedia_Dynamic{
 	};
 	stateNews_parse_request(json){
 			let items = json.rss.channel.item;
-			console.log(items);
 			//filter through the items to get an array of clean news stories
 			let cleanItems = items.filter((item)=>{
-				return (!this.filterContent(item.description)&& !this.filterContent(item.title));
+				return (!this.filterContent(item.description + " " + item.title));
+			}).map((item)=>{
+				//unclickbaitify!
+				item.description = item.description.replace("Click to Continue", "");
+				return item;
 			});
+			console.log(items);
+			console.log(cleanItems);
 			this.populatePage(cleanItems);
 	};
 	populatePage(cleanItems) {
