@@ -1,3 +1,40 @@
+const weatherValueMap = new Map();
+//clear
+//cloudy`
+//partly Cloudy
+//rainy
+//thunderstorms
+//snowy
+//hail
+//sleet
+//full moon
+//crescent moon
+
+class Weather_Module extends Gomedia_Dynamic{
+  constructor(optionsData){
+    super();
+    for (let key in optionsData) {
+        if (optionsData.hasOwnProperty(key)) {
+            this[key] = optionsData[key];
+        }
+    }
+    this.scriptStatus$ = new Rx.BehaviorSubject({isLoaded:false});
+    this.isLoaded$ = this.scriptStatus$.map(status=>status.isLoaded);
+  }
+  init(){
+    if(this.checkParams === true){
+      //overwriting default parameters with those supplied by the player
+      this.zipcode = this.getParameterByName('zipcode') !== "" ? this.getParameterByName('zipcode'): this.zipcode;
+    }
+  }
+  parse_request(){
+
+  }
+}
+
+///////////>>>>>>>>>
+
+
 var five_day_array = [];
 var day1_category;
 var day2_category;
@@ -28,17 +65,7 @@ var parent_id = null, element = null, id = null, name = null, value = null, plac
    var IS_EDGE = false;
  /* !!! MOVED TO ap-fgeed.js to main init.*/
 function init_weather(source_type) {
-	if(source_type == 'edge'){
-		IS_EDGE = true;
-
-	}else{
-
-	}
-
-
 	if(queryStringObj != null){
-
-
 		var qString = JSON.stringify(queryStringObj);
 	 	if (queryStringObj.hasOwnProperty('city')) {
 			CITY =  queryStringObj['city'];
