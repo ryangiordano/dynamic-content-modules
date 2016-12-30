@@ -1,0 +1,173 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/rx.all.min.js"></script>
+	<!-- GoMedia Dynamic Global Functions -->
+	<script src="js/gomedia-dynamic-util-2.0.js"></script>
+	<!-- THIS CONTENT SERIES -->
+	<script src="js/ap-feeds.js"></script>
+	<!-- THIS CONTENT -->
+	<script id="dynamic" src="js/main.js"></script>
+
+	<link rel="stylesheet" href="css/animate.css">
+	<style>
+		body {
+			position: absolute;
+			margin: 0px;
+		}
+	</style>
+	<script>
+		$(window).load(function() {
+			var original = $('#Stage').width();
+			$('#Stage').width(0);
+			setTimeout(function() {
+				$('#Stage').width(original);
+				playScenes();
+			}, 100);
+		});
+		$.Edge = {
+			symbol: {}
+		};
+		$.Edge.symbol.get = function(el) {
+			return listener;
+		};
+		var scenes = [];
+		var index = 0;
+		var defaultDuration = 5;
+		var sceneDuration = 10;
+		var playTimeout;
+		var listener = {
+			play: function(scenePosition) {
+				stopPlaying();
+				setTimeout(function() {
+					playScenes();
+				}, 150);
+				return 'from start';
+			}
+		};
+
+		function stopPlaying() {
+			clearTimeout(playTimeout);
+			totalDuration = 0;
+			index = 0;
+			$('.scene').css('display', 'none');
+			$('.scene').removeClass('animated').removeClass('fadeOut');
+		}
+
+		function playScenes() {
+			if (typeof parent.GoMediaHtml != "undefined") {
+				return;
+			}
+			scenes = $('.scene');
+			var element = scenes[index];
+			playScene(element);
+		}
+
+		function playScene(element) {
+			var duration = $(element).attr('data-duration');
+			sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
+			// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
+			$(element).css('display', 'block');
+			$(element).addClass('animated').addClass('fadeIn');
+			playTimeout = setTimeout(function() {
+				$(element).addClass('animated').addClass('fadeOut');
+				var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
+				index++;
+				playScene(nextElement);
+			}, sceneDuration * 1000);
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Asset">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Limelight">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bevan">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bowlby+One+SC">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Luckiest+Guy">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cedarville+Cursive">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Rock+Salt">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Sigmar+One">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Candal">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz">
+</head>
+
+<body style="width: 1920px; height: 1080px;">
+	<div id="Stage" class="GoMedia40-20 stageArea" style="width: 1920px; height: 1080px; overflow: hidden; position: inherit; background-color: black;">
+		<div class="scene" id="scene1" data-index="1" style="display: block;" data-duration="4">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div id="background-one" class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/348037News_MicrophoneStudio.jpg); background-color: rgb(223, 223, 223); background-size: 1910.03px 1064.7px; background-position: 0px 0px;"
+								data-orig-height="768px" data-orig-width="1366px"></div>
+			</div>
+
+			<div style="position: absolute; left: -6.59544px; top: -6.59544px; width: 1934px; height: 1096px;" class="animated fadeIn">
+				<div id="Element_1470167005176" class="gomedia-shape" style="width: 1934px; height: 1096px; visibility: inherit; opacity: 0.86; box-shadow: none; background-image: none; background-color: rgb(15, 46, 64);" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="clear:both;"></div>
+
+
+
+			<div style="position: absolute; left: 298.442px; top: 380.885px; width: 330px; height: 330px;" class="animated zoomIn">
+				<div id="Element_1470256667388" class="gomedia-image" style="width: 330px; height: 329.771px; visibility: inherit; box-shadow: none; background-image: url(images/348980AnimatedNewsSite2.gif); background-size: 100%; background-repeat: no-repeat;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;   left: 657.893px;   top: 387.481px;   width: 994px;   height: 259px;  ; animation-delay:0.1s; -webkit-animation-delay:0.1s" class="animated fadeInRight">
+				<div id="Element_1470256880386" class="gomedia-text" style="width: 994px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: Candal; color: rgb(242, 241, 244); font-size: 160px; box-shadow: none;"><span class="" style="letter-spacing: -4px; color: rgb(242, 241, 244);"><span class="" style="font-size: 200px; color: rgb(242, 241, 244);">NAT</span><span class="" style="letter-spacing: -11px; color: rgb(242, 241, 244);"><span class="" style="font-size: 200px; color: rgb(242, 241, 244);">IO</span>
+					<span
+									class="" style="letter-spacing: -9px; font-size: 200px; color: rgb(242, 241, 244);">N</span>
+						</span><span class="" style="font-size: 200px; color: rgb(242, 241, 244);">AL</span></span>
+				</div>
+			</div>
+			<div style="position: absolute;   left: 666.137px;   top: 577.184px;   width: 717px;   height: 130px;  ; animation-delay:0.3s; -webkit-animation-delay:0.3s" class="animated fadeInRight">
+				<div id="Element_1470256958149" class="gomedia-text" style="width: 717px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: Candal; color: rgb(196, 184, 151); font-size: 160px; box-shadow: none;"><span style="font-size: 100px; letter-spacing: -4px; color: rgb(196, 184, 151);" class="">NEWS UPDATE</span></div>
+			</div>
+		</div>
+		<div class="scene" id="scene2" data-index="2" data-duration="16" style="display: none;">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
+				<div class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/348037News_MicrophoneStudio.jpg); background-color: rgb(223, 223, 223); background-size: 2854.5px 1605px; background-position: 0px -112.35px;" data-orig-height="768px"
+								data-orig-width="1366px"></div>
+			</div>
+
+			<div style="position: absolute; left: -4.94658px; top: -6.59544px; width: 1932px; height: 1093px;">
+				<div id="Element_1470257122215" class="gomedia-shape" style="width: 1932px; height: 1093px; visibility: inherit; opacity: 0.93; box-shadow: none; background-image: none; background-color: rgb(15, 46, 64);" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 82.4428px; top: 64.0517px; width: 1845px; height: 196px;" class="animated fadeInRight">
+				<div id="Element_1470258361468" class="gomedia-shape" style="width: 1845px; height: 196px; visibility: inherit; box-shadow: none; opacity: 0.81; background-image: none; background-color: rgb(4, 23, 33);" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute;   left: 293.838px;   top: 892.947px;   width: 529px;   height: 130px;  ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeInRight">
+				<div id="Element_1467743193886" class="gomedia-text" style="width: 529px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Paytone One&quot;; font-size: 100px; box-shadow: none; color: rgb(242, 241, 244);">
+					<span class="" style="font-family: Candal;">NAT<span class="" style="letter-spacing: -6px;">IO</span>NAL</span>
+				</div>
+			</div>
+			<div style="position: absolute;  left: 120.255px;  top: 175.4742px;  width: 1731px;  height: 80px; ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
+				<div id="Element_1467745465534" class="gomedia-dynamic feed-id" style="width: 1731px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Yanone Kaffeesatz&quot;; font-size: 90px; color: rgb(242, 241, 244); box-shadow: none; line-height: 80px; font-weight: normal;">McConnell to lead Senate GOP, Schumer new Democratic leader</div>
+			</div>
+			<div style="position: absolute;  left: 120.255px;  top: 75.4742px;  width: 1731px;  height: 80px; ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
+				<div id="Element_1467743223793" class="gomedia-dynamic title" style="width: 1731px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Yanone Kaffeesatz&quot;; font-size: 90px; color: rgb(242, 241, 244); box-shadow: none; line-height: 80px; font-weight: normal;">McConnell to lead Senate GOP, Schumer new Democratic leader</div>
+			</div>
+			<div style="position: absolute;   left: 113.972px;   top: 276.78px;   width: 1754px;   height: 576px;  ; animation-delay:1s; -webkit-animation-delay:1s" class="animated fadeIn">
+				<div id="Element_1467743688989" class="gomedia-dynamic description" style="width: 1754px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-size: 56px; font-family: &quot;Yanone Kaffeesatz&quot;; color: rgb(240, 231, 210); box-shadow: none; line-height: 64px;">WASHINGTON (AP) — Senate Republicans re-elected Mitch McConnell of Kentucky on Wednesday to be majority leader next year, keeping the tough legislative tactician at the forefront when the new Congress begins working on Donald Trump's agenda. The chamber's
+					Democrats replaced their departing leader with Sen. Chuck Schumer, meaning the New Yorker will be Washington's most powerful Democrat as the party confronts a Republican-dominated government. "Where we can work together we will," Schumer told reporters
+					about his expected relationship with Trump, a fellow New Yorker with whom he shares a fondness for TV soundbites and sharp elbows. But Schumer said he's also told the president-elect, "On issues where we disagree, you can expect a strong and tough
+					fight." With Democrats just beginning to study why last week's election turned so badly against them, Schumer announced a 10-member leadership team.</div>
+			</div>
+
+			<div style="position: absolute; left: 123.665px; top: 893.679px; width: 143px; height: 143px;" class="animated zoomIn">
+				<div id="Element_1470258431770" class="gomedia-image" style="width: 143px; height: 143.45px; visibility: inherit; box-shadow: none; background-image: url(images/348982AnimatedNewsSite2.gif); background-size: 100%; background-repeat: no-repeat;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;   left: 302.082px;   top: 992.687px;   width: 313px;   height: 47px;  ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated fadeInRight">
+				<div id="Element_1470258620323" class="gomedia-text" style="width: 313px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Paytone One&quot;; font-size: 36px; box-shadow: none; color: rgb(196, 184, 151);"><font face="Candal">NEWS UPDATE</font></div>
+			</div>
+			<div style="position: absolute;   left: 1353.72px;   top: 982.719px;   width: 391px;   height: 42px;  ; animation-delay:2.5s; -webkit-animation-delay:2.5s" class="animated fadeInDown">
+				<div id="Element_1470258665829" class="gomedia-text" style="width: 391px; height: 111.111px; word-wrap: break-word; visibility: inherit; box-shadow: none;"><span class="" style="font-family: &quot;Yanone Kaffeesatz&quot;; color: rgb(242, 241, 244); font-size: 36px;">POWERED BY THE ASSOCIATED PRESS</span></div>
+			</div>
+			<div style="position: absolute;   left: 1752.73px;   top: 976.123px;   width: 56.0611px;   height: 65.9543px;  ; animation-delay:2.8s; -webkit-animation-delay:2.8s" class="animated fadeInDown">
+				<div id="Element_1470258702083" class="gomedia-image" style="width: 56.0611px; height: 65.9543px; visibility: inherit; box-shadow: none; background-image: url(images/346533AP_news_icon.png); background-size: 100%; background-repeat: no-repeat;">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

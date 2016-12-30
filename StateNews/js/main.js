@@ -20,10 +20,7 @@ function dynamicData(json) {
 	        stateNews.stateNews_parse_request(json);
 	        stateNews.removeDynamicScripts();
 	    },
-	    error => {console.error(error)},
-	    () => {
-	        console.log("complete")
-	    }
+	    error => {console.error(error)}
 	);
 }
 

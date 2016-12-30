@@ -1,0 +1,14 @@
+.error_window {
+	display: none;
+	position: absolute;
+	overflow-y: scroll;
+	top: 0;
+	height: 100px;
+	color: orange;
+	width: 100%;
+	background: #000;
+	font-family: arial;
+	font-size: 1em;
+	padding-top: 10px;
+	padding-left: 15px;
+}

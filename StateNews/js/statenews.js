@@ -28,8 +28,7 @@ class State_News_Module extends Gomedia_Dynamic{
 		let expire = "10";
 		let json_use = "use"; // use/empty
 		const PROXY_URL = "//proxy.gocodigo.net/cimProxy.aspx?json=" + json_use + "&dur=" + dur + "&expire=" + expire + "&url=";
-		const PROXY_XML = "//proxy.gocodigo.net/cimProxy.aspx?json=use&file="; //params: path/to/file.xml
-		//CONTENT SPECIFIC PARAMETERS:
+		const PROXY_XML = "//proxy.gocodigo.net/cimProxy.aspx?json=use&file=";
  		const NEWSEDGE_URL = "http%3A%2F%2Fnew.newsedge.com%2Fservlet%2Frssfeed%2Frssfeed%3Ffile%3D";
 		for(let i=0; i < this.stateFileMap.length; i++){
 		 	if ( this.stateFileMap[i].hasOwnProperty(this.state) ) {

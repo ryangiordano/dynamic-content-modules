@@ -1,5 +1,5 @@
 let optionsData = {
-    feedId: "birthday", //word,history,article, or birthday
+    feedId: "history", //word,history,article, or birthday
     checkParams: true,
     DOMelements: {
         titleElement: ".title",
@@ -18,8 +18,7 @@ function dynamicData(json) {
         freeDictionary.parseResponse(json);
         freeDictionary.removeDynamicScripts();
       },
-      error=>{console.error(error)},
-      ()=>{console.log("complete")}
+      error=>{console.error(error)}
     );
 }
 gomediaDynamicInit();

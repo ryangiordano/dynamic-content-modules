@@ -5,19 +5,6 @@ gomedia-dynamic-util.js
 This file will be 'ACTIVELY LIVE' getting pulled into and used by thousands of pieces of dynamic content.
 Primarily new Digital Signage (v3) or html+ content.
 DO NOT DELETE OR WORK ON IT DIRECTLY.
-I. Functions
-	1. QueryStringToJSON()
-	2. filterContent(string)
-	3. addOnFunctions()
-	4. hideLinks()
-	5. capitalizeFirstLetter(string)
-	6. abbrState(input, to)
-	7. checkParameters()
-	8. getParameterByName(name)
-	9. goMediaDynamicSceneRefresh
-	10. loadScript(url, callback)
-	11. removeDynamicScripts()
-	12. edgeIsReady()
 
 DEVELOPER NOTES:
 1) main.js needs to container the function: gomediaDynamicInit(), because the
@@ -29,7 +16,6 @@ Otherwise, scripts will continue to get added to the html because of the way tha
 It takes a 'snapshot' of the html that was edited and saves it.
 3) Gomedia_Dynamic is inherited by dynamic modules like Twitter_Module and State_News_Module
 */
-
 class Gomedia_Dynamic {
     constructor() {
         this.arrayOfDynamicScriptIds = [];

@@ -1,0 +1,420 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/vendor/rx.all.min.js"></script>
+	<!-- GoMedia Dynamic Global Functions -->
+	<script src="js/gomedia-dynamic-util-2.0.js"></script>
+	<script type="text/javascript" src="images/theme-3/config.js"></script>
+	<script type="text/javascript" src="js/weather.js"></script>
+	<script type="text/javascript" src="js/ap-feed-module.js"></script>
+	<!-- THIS CONTENT SERIES -->
+	<!-- THIS CONTENT -->
+	<script id="dynamic" src="js/main.js"></script>
+
+	<link rel="stylesheet" href="css/animate.css">
+	<style>
+		body {
+			position: absolute;
+			margin: 0px;
+		}
+	</style>
+	<script>
+		$(window).load(function() {
+			var original = $('#Stage').width();
+			$('#Stage').width(0);
+			setTimeout(function() {
+				$('#Stage').width(original);
+				playScenes();
+			}, 100);
+		});
+		$.Edge = {
+			symbol: {}
+		};
+		$.Edge.symbol.get = function(el) {
+			return listener;
+		};
+		var scenes = [];
+		var index = 0;
+		var defaultDuration = 5;
+		var sceneDuration = 10;
+		var playTimeout;
+		var listener = {
+			play: function(scenePosition) {
+				stopPlaying();
+				setTimeout(function() {
+					playScenes();
+				}, 150);
+				return 'from start';
+			}
+		};
+
+		function stopPlaying() {
+			clearTimeout(playTimeout);
+			totalDuration = 0;
+			index = 0;
+			$('.scene').css('display', 'none');
+			$('.scene').removeClass('animated').removeClass('fadeOut');
+		}
+
+		function playScenes() {
+			if (typeof parent.GoMediaHtml != "undefined") {
+				return;
+			}
+			scenes = $('.scene');
+			var element = scenes[index];
+			playScene(element);
+		}
+
+		function playScene(element) {
+			var duration = $(element).attr('data-duration');
+			sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
+			// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
+			$(element).css('display', 'block');
+			$(element).addClass('animated').addClass('fadeIn');
+			playTimeout = setTimeout(function() {
+				$(element).addClass('animated').addClass('fadeOut');
+				var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
+				index++;
+				playScene(nextElement);
+			}, sceneDuration * 1000);
+		}
+	</script>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fontdiner+Swanky">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cherry+Cream+Soda">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Asset">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Limelight">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bevan">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bowlby+One+SC">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Luckiest+Guy">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cedarville+Cursive">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Rock+Salt">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Sigmar+One">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Candal">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz">
+</head>
+
+<body style="width: 1920px; height: 155px;">
+	<div id="Stage" class="GoMedia40-60 stageArea" style="width: 1920px; height: 155px; overflow: hidden; position: inherit; background-color: black;">
+
+		<div id="scene1" data-index="1" data-duration="20" style="display: block;" class="scene">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 155px;">
+				<div class="gomedia-background" style="width: 100%; height: 100%; background-image: url('images/19502BG_Other_BudgetTime.jpg'); background-color: rgb(223, 223, 223); background-size: 2185.6px 1228.8px; background-position: 65.568px 0px;" data-orig-height="768px"
+								data-orig-width="1366px"></div>
+			</div>
+
+
+			<div style="position: absolute; left: -11.7717px; top: -8.40832px; width: 1942px; height: 168px;">
+				<div id="Element_1479486256418" class="gomedia-shape" style="width: 1942px; height: 168px; background-color: rgb(1, 95, 125); background-image: none; visibility: inherit; opacity: 0.78; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 1412.6px; top: -7.09px; width: 512px; height: 164px;" class="animated fadeInRight">
+				<div id="Element_1479327796992" class="gomedia-shape" style="width: 512px; height: 164px; background-color: rgb(33, 33, 33); background-image: none; visibility: inherit; opacity: 0.82; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 217.645px;        top: 60.4761px;        width: 1130px;        height: 32px;       ; animation-delay:3s; -webkit-animation-delay:3s" class="animated fadeInUp">
+				<div id="Element_1467743223793" class="gomedia-dynamic ap_title" style="width: 1130px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; line-height: 32px; text-shadow: rgb(0, 0, 0) -3px 3px 9px;">Yellen says she isn't going anywhere when Trump takes office</div>
+			</div>
+			<div style="position: absolute;        left: 216.634px;        top: 105.499px;        width: 1133px;        height: 32px;       ; animation-delay:6.5s; -webkit-animation-delay:6.5s" class="animated fadeInUp">
+				<div id="Element_1467743223794" class="gomedia-dynamic   ap_title2 " style="width: 1133px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; line-height: 32px; text-shadow: rgb(0, 0, 0) -3px 3px 9px;">South Korea rejects Google request to use mapping data</div>
+			</div>
+			<div style="position: absolute;        left: 216.786px;        top: 15.0645px;        width: 1129px;        height: 32px;       ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeInUp">
+				<div id="Element_1467743223795" class="gomedia-dynamic ap_title3" style="width: 1129px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; font-weight: normal; line-height: 32px; text-shadow: rgb(0, 0, 0) -3px 3px 9px;">Abercrombie off the mark in 3Q as turnaround efforts sputter</div>
+			</div>
+
+			<div style="position: absolute;             left: 134.353px;             top: 1000.332px;             width: 1659px;             height: 469px;            ; animation-delay:2s; -webkit-animation-delay:2s" class="animated zoomIn">
+				<div id="Element_1467743688989" class="gomedia-dynamic  " style="width: 1659px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-size: 42px; font-family: &quot;Shadows Into Light&quot;; color: rgb(245, 228, 186); box-shadow: none;"></div>
+			</div>
+			<!-- WEATHER SECTION scene 2 -->
+
+			<div style=" position: absolute; left: 0px; top: 200px; width: 1920px; height: 155px;" class="animated fadeIn">
+				<div id="weather_div" class="gomedia-dynamic" style=" width: 1920px; height: 155px; visibility: inherit; box-shadow: none; background-image: url(''); background-size: 100%; background-repeat: no-repeat;" data-zappend="after">
+
+				</div>
+			</div>
+			<!-- DAY 1 img
+			<div style="position: absolute; left: 1735.05px; top: -10.9187px; width: 150px; height: 150px;">
+				<div id="Element_1470239852351" class="gomedia-dynamic   " style="width: 150px; height: 150px; visibility: inherit; box-shadow: none; word-wrap: break-word; line-height: 100px; font-size: 100px; min-width: 178px; min-height: 155px; background-image: url(//shout.gocodigo.net/gomedia-dynamic/weather/images/theme-3/partly-cloudy.gif); background-size: contain; background-repeat: no-repeat;">
+					&nbsp;
+				</div>
+			</div>-->
+			<!-- DAY 1 hi -->
+			<div style="position: absolute;       left: 1577.87px;       top: 17.1454px;       width: 62px;       height: 50px;      ; animation-delay:0.6s; -webkit-animation-delay:0.6s" class="animated fadeIn">
+				<div id="Element_1470239859056" class="gomedia-dynamic weather-hi-1" style="width: 62px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;;">82</div>
+			</div>
+			<!-- DAY 1 lo -->
+			<div style="position: absolute;       left: 1578.36px;       top: 57.6465px;       width: 61px;       height: 50px;      ; animation-delay:1s; -webkit-animation-delay:1s" class="animated fadeIn">
+				<div id="Element_1470239901024" class="gomedia-dynamic weather-lo-1" style="width: 61px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;; text-align: left;">38</div>
+			</div>
+			<!-- DAY 1 p -->
+			<div style="position: absolute;       left: 1577.83px;       top: 99.0871px;       width: 101px;       height: 50px;      ; animation-delay:1.5s; -webkit-animation-delay:1.5s" class="animated fadeIn">
+				<div id="Element_1470239905872" class="gomedia-dynamic weather-p-1" style="width: 101px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;;">39.5%</div>
+			</div>
+
+
+
+			<!--  C L O C K -->
+
+
+			<div style="position: absolute;       left: 1620.76px;       top: 22.6978px;       width: 196px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeIn">
+				<div id="Element_1470257180826" class="gomedia-dynamic clock_month" style="width: 196px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 32px; box-shadow: none; color: rgb(245, 240, 228); text-align: right; line-height: 36px;">November</div>
+			</div>
+			<div style="position: absolute;       left: 1828.38px;       top: 24.3052px;       width: 49px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeIn">
+				<div id="Element_1470257157180" class="gomedia-dynamic clock_date" style="width: 49px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 36px; box-shadow: none; color: rgb(245, 240, 228); line-height: 36px;">18</div>
+			</div>
+
+			<div style="position: absolute;       left: 1640.46px;       top: 62.1927px;       width: 177px;       height: 80px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeIn">
+				<div id="Element_1470257191840" class="gomedia-dynamic clock_time" style="width: 177px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 72px; box-shadow: none; color: rgb(245, 240, 228); text-align: right; line-height: 80px;">11:27</div>
+			</div>
+			<div style="position: absolute;       left: 1825.82px;       top: 96.0007px;       width: 61px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeIn">
+				<div id="Element_1470257222817" class="gomedia-dynamic clock_ampm" style="width: 61px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 36px; box-shadow: none; color: rgb(245, 240, 228); line-height: 36px;">AM</div>
+			</div>
+
+
+			<div style="position: absolute;       left: 1378.97px;       top: 22.4464px;       width: 185px;       height: 39px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeIn">
+				<div id="Element_1470941804825" class="gomedia-text " style="width: 185px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					HIGH</div>
+			</div>
+			<div style="position: absolute;       left: 1506.37px;       top: 62.617px;       width: 59px;       height: 39px;      ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated fadeIn">
+				<div id="Element_1470941844150" class="gomedia-text " style="width: 59px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					LOW</div>
+			</div>
+			<div style="position: absolute;       left: 1412.3px;       top: 104.456px;       width: 154px;       height: 39px;      ; animation-delay:1.4s; -webkit-animation-delay:1.4s" class="animated fadeIn">
+				<div id="Element_1471362267369" class="gomedia-text " style="width: 154px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					PRECIP</div>
+			</div>
+
+			<div style="position: absolute;        left: 187.674px;        top: 25.225px;        width: 14px;        height: 14px;       ; animation-delay:0.8s; -webkit-animation-delay:0.8s" class="animated bounceIn">
+				<div id="Element_1479325619209" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 187.674px;        top: 69.306px;        width: 14px;        height: 14px;       ; animation-delay:3.3s; -webkit-animation-delay:3.3s" class="animated bounceIn">
+				<div id="Element_1479325676964" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 188.683px;        top: 114.324px;        width: 14px;        height: 14px;       ; animation-delay:6.8s; -webkit-animation-delay:6.8s" class="animated bounceIn">
+				<div id="Element_1479325685561" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: -645.76px; top: -7.20714px; width: 767px; height: 164px;" class="animated fadeInRight">
+				<div id="Element_1479325777903" class="gomedia-shape" style="width: 767px; height: 164px; background-color: rgb(33, 33, 33); background-image: none; visibility: inherit; opacity: 0.82; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 55.1759px;        top: 15.5651px;        width: 109.549px;        height: 123.963px;       ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeIn">
+				<div id="Element_1471374042195" class="gomedia-image" style="width: 109.549px; height: 123.963px; visibility: inherit; box-shadow: none; background-image: url(images/346533AP_news_icon.png); background-size: 100%; background-repeat: no-repeat;" data-zappend="after">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+		<div id="scene2" data-index="2" data-duration="20" style="display: none;" class="scene">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 155px;">
+				<div class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/19502BG_Other_BudgetTime.jpg); background-color: rgb(223, 223, 223); background-size: 2185.6px 1228.8px; background-position: 65.568px 503.808px;" data-orig-height="768px"
+								data-orig-width="1366px"></div>
+			</div>
+
+
+			<div style="position: absolute; left: -8.40832px; top: -5.04499px; width: 1939px; height: 170px;">
+				<div id="Element_1479486398528" class="gomedia-shape" style="width: 1939px; height: 170px; background-color: rgb(1, 95, 125); background-image: none; visibility: inherit; opacity: 0.79; border-radius: 0px; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 1412.6px; top: -7.09px; width: 512px; height: 164px;" class="animated none">
+				<div id="Element_1479327796992" class="gomedia-shape" style="width: 512px; height: 164px; background-color: rgb(33, 33, 33); background-image: none; visibility: inherit; opacity: 0.82; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 217.645px;        top: 60.4761px;        width: 1130px;        height: 32px;       ; animation-delay:3s; -webkit-animation-delay:3s" class="animated fadeInUp">
+				<div id="Element_1467743223793" class="gomedia-dynamic ap_title" style="width: 1130px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; line-height: 32px; text-shadow: rgb(0, 0, 0) -2px 3px 10px;">Trump attorneys to argue for delay in Trump University trial</div>
+			</div>
+			<div style="position: absolute;        left: 216.634px;        top: 105.499px;        width: 1133px;        height: 32px;       ; animation-delay:6.5s; -webkit-animation-delay:6.5s" class="animated fadeInUp">
+				<div id="Element_1467743223794" class="gomedia-dynamic   ap_title2 " style="width: 1133px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; line-height: 32px; text-shadow: rgb(0, 0, 0) -2px 3px 10px;">DuPont to end pension contribution for active employees</div>
+			</div>
+			<div style="position: absolute;        left: 216.786px;        top: 15.0645px;        width: 1129px;        height: 32px;       ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeInUp">
+				<div id="Element_1467743223795" class="gomedia-dynamic ap_title3" style="width: 1129px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; font-weight: normal; line-height: 32px; text-shadow: rgb(0, 0, 0) -2px 3px 10px;">Chinese director accuses Wanda of monopolizing market</div>
+			</div>
+
+			<div style="position: absolute;             left: 134.353px;             top: 1000.332px;             width: 1659px;             height: 469px;            ; animation-delay:2s; -webkit-animation-delay:2s" class="animated zoomIn">
+				<div id="Element_1467743688989" class="gomedia-dynamic  " style="width: 1659px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-size: 42px; font-family: &quot;Shadows Into Light&quot;; color: rgb(245, 228, 186); box-shadow: none;"></div>
+			</div>
+			<!-- WEATHER SECTION scene 2 -->
+
+			<div style=" position: absolute; left: 0px; top: 200px; width: 1920px; height: 155px;" class="animated fadeIn">
+				<div id="weather_div" class="gomedia-dynamic" style=" width: 1920px; height: 155px; visibility: inherit; box-shadow: none; background-image: url(''); background-size: 100%; background-repeat: no-repeat;" data-zappend="after">
+
+				</div>
+			</div>
+			<!-- DAY 1 img
+			<div style="position: absolute; left: 1735.05px; top: -10.9187px; width: 150px; height: 150px;">
+				<div id="Element_1470239852351" class="gomedia-dynamic   " style="width: 150px; height: 150px; visibility: inherit; box-shadow: none; word-wrap: break-word; line-height: 100px; font-size: 100px; min-width: 178px; min-height: 155px; background-image: url(//shout.gocodigo.net/gomedia-dynamic/weather/images/theme-3/partly-cloudy.gif); background-size: contain; background-repeat: no-repeat;">
+					&nbsp;
+				</div>
+			</div>-->
+			<!-- DAY 1 hi -->
+			<div style="position: absolute;       left: 1577.87px;       top: 17.1454px;       width: 62px;       height: 50px;      ; animation-delay:0.6s; -webkit-animation-delay:0.6s" class="animated none">
+				<div id="Element_1470239859056" class="gomedia-dynamic weather-hi-1" style="width: 62px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;;">82</div>
+			</div>
+			<!-- DAY 1 lo -->
+			<div style="position: absolute;       left: 1578.36px;       top: 57.6465px;       width: 61px;       height: 50px;      ; animation-delay:1s; -webkit-animation-delay:1s" class="animated none">
+				<div id="Element_1470239901024" class="gomedia-dynamic weather-lo-1" style="width: 61px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;; text-align: left;">38</div>
+			</div>
+			<!-- DAY 1 p -->
+			<div style="position: absolute;       left: 1577.83px;       top: 99.0871px;       width: 101px;       height: 50px;      ; animation-delay:1.5s; -webkit-animation-delay:1.5s" class="">
+				<div id="Element_1470239905872" class="gomedia-dynamic weather-p-1" style="width: 101px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;;">39.5%</div>
+			</div>
+
+
+
+			<!--  C L O C K -->
+
+
+			<div style="position: absolute;       left: 1620.76px;       top: 22.6978px;       width: 196px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257180826" class="gomedia-dynamic clock_month" style="width: 196px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 32px; box-shadow: none; color: rgb(245, 240, 228); text-align: right; line-height: 36px;">November</div>
+			</div>
+			<div style="position: absolute;       left: 1828.38px;       top: 24.3052px;       width: 49px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257157180" class="gomedia-dynamic clock_date" style="width: 49px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 36px; box-shadow: none; color: rgb(245, 240, 228); line-height: 36px;">18</div>
+			</div>
+
+			<div style="position: absolute;       left: 1640.46px;       top: 62.1927px;       width: 177px;       height: 80px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257191840" class="gomedia-dynamic clock_time" style="width: 177px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 72px; box-shadow: none; color: rgb(245, 240, 228); text-align: right; line-height: 80px;">11:27</div>
+			</div>
+			<div style="position: absolute;       left: 1825.82px;       top: 96.0007px;       width: 61px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257222817" class="gomedia-dynamic clock_ampm" style="width: 61px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 36px; box-shadow: none; color: rgb(245, 240, 228); line-height: 36px;">AM</div>
+			</div>
+
+
+			<div style="position: absolute;       left: 1378.97px;       top: 22.4464px;       width: 185px;       height: 39px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470941804825" class="gomedia-text " style="width: 185px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					HIGH</div>
+			</div>
+			<div style="position: absolute;       left: 1506.37px;       top: 62.617px;       width: 59px;       height: 39px;      ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated none">
+				<div id="Element_1470941844150" class="gomedia-text " style="width: 59px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					LOW</div>
+			</div>
+			<div style="position: absolute;       left: 1412.3px;       top: 104.456px;       width: 154px;       height: 39px;      ; animation-delay:1.4s; -webkit-animation-delay:1.4s" class="animated none">
+				<div id="Element_1471362267369" class="gomedia-text " style="width: 154px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					PRECIP</div>
+			</div>
+
+			<div style="position: absolute;        left: 187.674px;        top: 25.225px;        width: 14px;        height: 14px;       ; animation-delay:0.8s; -webkit-animation-delay:0.8s" class="animated bounceIn">
+				<div id="Element_1479325619209" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 187.674px;        top: 69.306px;        width: 14px;        height: 14px;       ; animation-delay:3.3s; -webkit-animation-delay:3.3s" class="animated bounceIn">
+				<div id="Element_1479325676964" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 188.683px;        top: 114.324px;        width: 14px;        height: 14px;       ; animation-delay:6.8s; -webkit-animation-delay:6.8s" class="animated bounceIn">
+				<div id="Element_1479325685561" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: -645.76px; top: -7.20714px; width: 767px; height: 164px;" class="animated none">
+				<div id="Element_1479325777903" class="gomedia-shape" style="width: 767px; height: 164px; background-color: rgb(33, 33, 33); background-image: none; visibility: inherit; opacity: 0.82; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;   left: 55.1759px;   top: 15.5651px;   width: 109.549px;   height: 123.963px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated pulse">
+				<div id="Element_1471374042195" class="gomedia-image" style="width: 109.549px; height: 123.963px; visibility: inherit; box-shadow: none; background-image: url(images/346533AP_news_icon.png); background-size: 100%; background-repeat: no-repeat;" data-zappend="after">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+		<div id="scene3" data-index="3" data-duration="20" style="display: none;" class="scene">
+			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 155px;">
+				<div class="gomedia-background" style="width: 100%; height: 100%; background-image: url(images/19502BG_Other_BudgetTime.jpg); background-color: rgb(223, 223, 223); background-size: 2185.6px 1228.8px; background-position: 65.568px -380.928px;" data-orig-height="768px"
+								data-orig-width="1366px"></div>
+			</div>
+
+
+			<div style="position: absolute; left: -10.09px; top: -8.40832px; width: 1941px; height: 168px;">
+				<div id="Element_1479486442478" class="gomedia-shape" style="width: 1941px; height: 168px; background-color: rgb(1, 95, 125); background-image: none; visibility: inherit; opacity: 0.79; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: 1412.6px; top: -7.09px; width: 512px; height: 164px;" class="animated none">
+				<div id="Element_1479327796992" class="gomedia-shape" style="width: 512px; height: 164px; background-color: rgb(33, 33, 33); background-image: none; visibility: inherit; opacity: 0.82; box-shadow: none;" data-zappend="before">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 217.645px;        top: 60.4761px;        width: 1130px;        height: 32px;       ; animation-delay:3s; -webkit-animation-delay:3s" class="animated fadeInUp">
+				<div id="Element_1467743223793" class="gomedia-dynamic ap_title" style="width: 1130px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; line-height: 32px; text-shadow: rgb(0, 0, 0) -2px 3px 10px;">Volkswagen to shed 30,000 jobs, cutting costs after scandal</div>
+			</div>
+			<div style="position: absolute;        left: 216.634px;        top: 105.499px;        width: 1133px;        height: 32px;       ; animation-delay:6.5s; -webkit-animation-delay:6.5s" class="animated fadeInUp">
+				<div id="Element_1467743223794" class="gomedia-dynamic   ap_title2 " style="width: 1133px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; line-height: 32px; text-shadow: rgb(0, 0, 0) -2px 3px 10px;">Asian shares mixed, Nikkei up as Yellen remarks lift dollar</div>
+			</div>
+			<div style="position: absolute;        left: 216.786px;        top: 15.0645px;        width: 1129px;        height: 32px;       ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated fadeInUp">
+				<div id="Element_1467743223795" class="gomedia-dynamic ap_title3" style="width: 1129px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 30px; color: rgb(242, 241, 244); box-shadow: none; font-weight: normal; line-height: 32px; text-shadow: rgb(0, 0, 0) -2px 3px 10px;">Gap's third-quarter profit drops nearly 18 percent</div>
+			</div>
+
+			<div style="position: absolute;             left: 134.353px;             top: 1000.332px;             width: 1659px;             height: 469px;            ; animation-delay:2s; -webkit-animation-delay:2s" class="animated zoomIn">
+				<div id="Element_1467743688989" class="gomedia-dynamic  " style="width: 1659px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-size: 42px; font-family: &quot;Shadows Into Light&quot;; color: rgb(245, 228, 186); box-shadow: none;"></div>
+			</div>
+			<!-- WEATHER SECTION scene 2 -->
+
+			<div style=" position: absolute; left: 0px; top: 200px; width: 1920px; height: 155px;" class="animated fadeIn">
+				<div id="weather_div" class="gomedia-dynamic" style=" width: 1920px; height: 155px; visibility: inherit; box-shadow: none; background-image: url(''); background-size: 100%; background-repeat: no-repeat;" data-zappend="after">
+
+				</div>
+			</div>
+			<!-- DAY 1 img
+			<div style="position: absolute; left: 1735.05px; top: -10.9187px; width: 150px; height: 150px;">
+				<div id="Element_1470239852351" class="gomedia-dynamic   " style="width: 150px; height: 150px; visibility: inherit; box-shadow: none; word-wrap: break-word; line-height: 100px; font-size: 100px; min-width: 178px; min-height: 155px; background-image: url(//shout.gocodigo.net/gomedia-dynamic/weather/images/theme-3/partly-cloudy.gif); background-size: contain; background-repeat: no-repeat;">
+					&nbsp;
+				</div>
+			</div>-->
+			<!-- DAY 1 hi -->
+			<div style="position: absolute;       left: 1577.87px;       top: 17.1454px;       width: 62px;       height: 50px;      ; animation-delay:0.6s; -webkit-animation-delay:0.6s" class="animated none">
+				<div id="Element_1470239859056" class="gomedia-dynamic weather-hi-1" style="width: 62px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;;">82</div>
+			</div>
+			<!-- DAY 1 lo -->
+			<div style="position: absolute;       left: 1578.36px;       top: 57.6465px;       width: 61px;       height: 50px;      ; animation-delay:1s; -webkit-animation-delay:1s" class="animated none">
+				<div id="Element_1470239901024" class="gomedia-dynamic weather-lo-1" style="width: 61px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;; text-align: left;">38</div>
+			</div>
+			<!-- DAY 1 p -->
+			<div style="position: absolute;       left: 1577.83px;       top: 99.0871px;       width: 101px;       height: 50px;      ; animation-delay:1.5s; -webkit-animation-delay:1.5s" class="animated none">
+				<div id="Element_1470239905872" class="gomedia-dynamic weather-p-1" style="width: 101px; height: 111.111px; word-wrap: break-word; visibility: inherit; color: rgb(255, 50, 46); font-size: 36px; box-shadow: none; font-family: &quot;Francois One&quot;;">39.5%</div>
+			</div>
+
+
+
+			<!--  C L O C K -->
+
+
+			<div style="position: absolute;       left: 1620.76px;       top: 22.6978px;       width: 196px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257180826" class="gomedia-dynamic clock_month" style="width: 196px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 32px; box-shadow: none; color: rgb(245, 240, 228); text-align: right; line-height: 36px;">November</div>
+			</div>
+			<div style="position: absolute;       left: 1828.38px;       top: 24.3052px;       width: 49px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257157180" class="gomedia-dynamic clock_date" style="width: 49px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 36px; box-shadow: none; color: rgb(245, 240, 228); line-height: 36px;">18</div>
+			</div>
+
+			<div style="position: absolute;       left: 1640.46px;       top: 62.1927px;       width: 177px;       height: 80px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257191840" class="gomedia-dynamic clock_time" style="width: 177px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 72px; box-shadow: none; color: rgb(245, 240, 228); text-align: right; line-height: 80px;">11:27</div>
+			</div>
+			<div style="position: absolute;       left: 1825.82px;       top: 96.0007px;       width: 61px;       height: 36px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470257222817" class="gomedia-dynamic clock_ampm" style="width: 61px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Francois One&quot;; font-size: 36px; box-shadow: none; color: rgb(245, 240, 228); line-height: 36px;">AM</div>
+			</div>
+
+
+			<div style="position: absolute;       left: 1378.97px;       top: 22.4464px;       width: 185px;       height: 39px;      ; animation-delay:0.5s; -webkit-animation-delay:0.5s" class="animated none">
+				<div id="Element_1470941804825" class="gomedia-text " style="width: 185px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					HIGH</div>
+			</div>
+			<div style="position: absolute;       left: 1506.37px;       top: 62.617px;       width: 59px;       height: 39px;      ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated none">
+				<div id="Element_1470941844150" class="gomedia-text " style="width: 59px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					LOW</div>
+			</div>
+			<div style="position: absolute;       left: 1412.3px;       top: 104.456px;       width: 154px;       height: 39px;      ; animation-delay:1.4s; -webkit-animation-delay:1.4s" class="animated none">
+				<div id="Element_1471362267369" class="gomedia-text " style="width: 154px; height: auto; word-wrap: break-word; visibility: inherit; font-weight: normal; color: rgb(255, 255, 255); box-shadow: none; text-align: right; font-family: &quot;Francois One&quot;; font-size: 28px;">
+					PRECIP</div>
+			</div>
+
+			<div style="position: absolute;        left: 187.674px;        top: 25.225px;        width: 14px;        height: 14px;       ; animation-delay:0.8s; -webkit-animation-delay:0.8s" class="animated bounceIn">
+				<div id="Element_1479325619209" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 187.674px;        top: 69.306px;        width: 14px;        height: 14px;       ; animation-delay:3.3s; -webkit-animation-delay:3.3s" class="animated bounceIn">
+				<div id="Element_1479325676964" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;        left: 188.683px;        top: 114.324px;        width: 14px;        height: 14px;       ; animation-delay:6.8s; -webkit-animation-delay:6.8s" class="animated bounceIn">
+				<div id="Element_1479325685561" class="gomedia-shape" style="width: 14px; height: 14px; background-color: rgb(255, 50, 46); background-image: none; visibility: inherit; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute; left: -645.76px; top: -7.20714px; width: 767px; height: 164px;" class="animated none">
+				<div id="Element_1479325777903" class="gomedia-shape" style="width: 767px; height: 164px; background-color: rgb(33, 33, 33); background-image: none; visibility: inherit; opacity: 0.82; box-shadow: none;">&nbsp;</div>
+			</div>
+			<div style="position: absolute;   left: 55.1759px;   top: 15.5651px;   width: 109.549px;   height: 123.963px;  ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated pulse">
+				<div id="Element_1471374042195" class="gomedia-image" style="width: 109.549px; height: 123.963px; visibility: inherit; box-shadow: none; background-image: url(images/346533AP_news_icon.png); background-size: 100%; background-repeat: no-repeat;" data-zappend="after">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+</body>
+
+</html>

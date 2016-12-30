@@ -137,6 +137,7 @@ class Twitter_Module extends Gomedia_Dynamic {
         let counter = 0;
         const numOfItems = twitterData.length;
         console.log(twitterData);
+        console.log(...twitterData);
         for (let i = 0; i < scenes.length; i++) {
             let sceneNumber = i + 1;
             let randomIndex = Math.floor((Math.random() * numOfItems));
