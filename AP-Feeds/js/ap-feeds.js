@@ -44,7 +44,6 @@ class AP_Feeds_Module extends Gomedia_Dynamic {
             AP_URL = "http%3A%2F%2Fproxy.captiveindoormedia.net%2Fcimapfeed.aspx%3Fid%3D",
             AP_URL_SUFFIX = "%26dur%3D" + dur + "%26expire%3D" + expire + "",
             URL = PROXY_URL + AP_URL + this.feed_id + AP_URL_SUFFIX;
-
         this.loadScript(URL, () => {
             this.scriptStatus$.onCompleted({
                 isLoaded: true

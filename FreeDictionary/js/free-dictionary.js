@@ -37,6 +37,7 @@ class Free_Dictionary_Module extends Gomedia_Dynamic {
         const FD_URL = "https%3A%2F%2Fwww.thefreedictionary.com%2F_%2FWoD%2Frss.aspx%3Ftype%3D";
         const URL = PROXY_URL + FD_URL + this.feedId;
         let url_array = URL;
+        console.log(URL);
         this.loadScript(url_array, () => {
             this.scriptStatus$.onCompleted({
                 isLoaded: true
@@ -47,15 +48,21 @@ class Free_Dictionary_Module extends Gomedia_Dynamic {
         // Gets the data from the script file , chooses a random one, and populates variables with information.  Ultimately, it runs display_result which filters formatted_title and description for any bad words.
         let items = json.rss.channel.item;
         let cleanItems = items.filter((item) => {
-            let description = item.description.value;
-            return (!this.filterContent(description) && !this.filterContent(item.title))
+          //replace the image with a regular string
+            let description = item.description.value.replace(/<img .*?>/g,"");
+            item.description = description;
+            let title = item.title;
+
+            if(typeof item.title == "object"){
+              title = item.title.i;
+            }
+            return (!this.filterContent(description) && !this.filterContent(title))
         });
         this.populatePage(cleanItems)
     }
     populatePage(cleanItems) {
         //in here, display result is checked for any bad words.  If none found, populates the elements on screen with dynamic data
         let cutOff = 0;
-
         if (cleanItems.length > 0) {
             let scenes = $('.scene');
             for (let i = 0; i < scenes.length; i++) {
@@ -66,9 +73,7 @@ class Free_Dictionary_Module extends Gomedia_Dynamic {
                     let randomIndex = Math.floor((Math.random() * cleanItems.length));
                     let randomItem = cleanItems.splice(randomIndex, 1);
                     $('#scene' + sceneNumber + ' ' + titleElement).html(randomItem[0].title);
-                    let description_img = randomItem[0].description.value;
-                    let description_no_img = description_img.replace(/<img .*?>/g, "");
-                    $('#scene' + sceneNumber + ' ' + descriptionElement).html(description_no_img);
+                    $('#scene' + sceneNumber + ' ' + descriptionElement).html(randomItem[0].description);
                 };
             }
             this.addOnFunctions();

@@ -87,7 +87,6 @@ class Twitter_Module extends Gomedia_Dynamic {
         });
     }
     hashtagSubmit(dataString) {
-        console.log(dataString);
         this.ajax_datastring_URL_callback(dataString, this.twitterInterfaceUrl, (data) => {
             let obj = JSON.parse(data);
             this.parseTwitterData(obj)

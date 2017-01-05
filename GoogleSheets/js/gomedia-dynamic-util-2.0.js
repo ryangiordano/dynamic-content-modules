@@ -773,7 +773,6 @@ class Gomedia_Dynamic {
         let filter = this.filter;
         let res;
         if (typeof string != "undefined") {
-
             res = string.split(/\s*\b\s*/);
         } else {
             return false;
