@@ -5,68 +5,7 @@
 	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/vendor/rx.all.min.js"></script>
 	<!-- GoMedia Dynamic Global Functions -->
-	<script src="js/gomedia-dynamic-util-2.0.js">
-		$(window).load(function() {
-			var original = $('#Stage').width();
-			$('#Stage').width(0);
-			setTimeout(function() {
-				$('#Stage').width(original);
-				playScenes();
-			}, 100);
-		});
-		$.Edge = {
-			symbol: {}
-		};
-		$.Edge.symbol.get = function(el) {
-			return listener;
-		};
-		var scenes = [];
-		var index = 0;
-		var defaultDuration = 5;
-		var sceneDuration = 10;
-		var playTimeout;
-		var listener = {
-			play: function(scenePosition) {
-				stopPlaying();
-				setTimeout(function() {
-					playScenes();
-				}, 150);
-				return 'from start';
-			}
-		}
-
-		function stopPlaying() {
-			clearTimeout(playTimeout);
-			totalDuration = 0;
-			index = 0;
-			$('.scene').css('display', 'none');
-			$('.scene').removeClass('animated').removeClass('fadeOut');
-		}
-
-		function playScenes() {
-			if (typeof parent.GoMediaHtml != "undefined") {
-				return;
-			}
-			$('.scene').removeClass('fadeIn').removeClass('fadeOut');
-			scenes = $('.scene');
-			var element = scenes[index];
-			playScene(element);
-		}
-
-		function playScene(element) {
-			var duration = $(element).attr('data-duration');
-			sceneDuration = typeof duration === "undefined" ? defaultDuration : duration;
-			// timeoutTime = index == 0 ? sceneDuration : timeoutTime + sceneDuration;
-			$(element).css('display', 'block');
-			$(element).addClass('animated').addClass('fadeIn');
-			playTimeout = setTimeout(function() {
-				$(this).addClass('animated').addClass('fadeOut');
-				var nextElement = index == (scenes.length - 1) ? null : scenes[index + 1];
-				index++;
-				playScene(nextElement);
-			}.bind(element), sceneDuration * 1000);
-		}
-	</script>
+	<script src="js/gomedia-dynamic-util-2.0.js"></script>
 	<!-- THIS CONTENT SERIES -->
 	<script src="js/google-sheets.js"></script>
 	<!-- THIS CONTENT -->
@@ -176,7 +115,7 @@
 			<div style="clear:both;"></div>
 
 			<div style="position: absolute;     left: 1136.73px;     top: 463.94px;     width: 357px;     height: 53px;    ; animation-delay:1s; -webkit-animation-delay:1s" class="animated fadeInDown">
-				<div id="Element_1481225215180" class="gomedia-text" style="width: 357px; height: auto; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-family: &quot;Quattrocento Sans&quot;; font-weight: normal; font-size: 60px;"><font face="Bowlby One SC"><span style="font-size: 60px; font-family: &quot;Quattrocento Sans&quot;; font-weight: normal; color: rgb(255, 255, 255);">Lately on</span></font></div>
+				<div id="Element_1481225215180" class="gomedia-text" style="width: 357px; height: auto; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-family: &quot;Quattrocento Sans&quot;; font-weight: normal; font-size: 60px;"><font face="Bowlby One SC"><span style="font-size: 60px; font-family: &quot;Quattrocento Sans&quot;; font-weight: normal; color: rgb(255, 255, 255);">Google Sheets</span></font></div>
 			</div>
 			<div style="position: absolute;     left: 200.854px;     top: 367.135px;     width: 477.439px;     height: 388.537px;    ; animation-delay:1.2s; -webkit-animation-delay:1.2s" class="animated fadeIn">
 				<div id="Element_1481226958321" class="gomedia-image" style="width: 477.439px; height: 388.537px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;" data-zappend="after">&nbsp;</div>
@@ -205,8 +144,8 @@
 								data-zappend="before">Follow us @gocodigo</div>
 			</div>
 			<div style="position: absolute;    left: 107.561px;    top: 796.084px;    width: 907px;    height: 76px;   ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
-				<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 907px; height: auto; font-size: 44px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);"
-								data-zappend="before">May 18</div>
+				<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic google-sheets-title" style="width: 907px; height: auto; font-size: 44px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);"
+								data-zappend="before">Google sheets title</div>
 			</div>
 			<div style="position: absolute; left: -10.9757px; top: 874.001px; width: 1941px; height: 204px;" class="animated fadeInUp">
 				<div id="Element_1481229584432" class="gomedia-shape" style="width: 1941px; height: 204px; background-color: rgb(255, 255, 255); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
@@ -217,12 +156,6 @@
 
 
 			<div style="clear:both;"></div>
-
-
-
-			<div style="position: absolute; left: 102.352px; top: 720.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
-				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Codigo</div>
-			</div>
 			<div style="position: absolute; left: 102.352px; top: 620.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
 				<div id="Element_14806226384200" class="gomedia-text gomedia-dynamic handle" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">@handle</div>
 			</div>
@@ -230,7 +163,7 @@
 				<div id="Element_14806226384201" class="gomedia-text gomedia-dynamic reach" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">000</div>
 			</div>
 			<div style="position: absolute;    left: 90.2745px;    top: 176.268px;    width: 1105px;    height: 228px;   ; animation-delay:0.7s; -webkit-animation-delay:0.7s" class="animated fadeInLeft">
-				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">Fresh afternoon coffee is happenin' outside the exhibit hall. And Red Bull... https://t.co/8r1JU7E10o</div>
+				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic google-sheets-description" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">Google sheets description</div>
 			</div>
 
 
@@ -285,11 +218,11 @@
 
 
 			<div style="position: absolute; left: 102.352px; top: 720.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
-				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Codigo</div>
+				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic google-sheets-title" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Google Sheets Title</div>
 			</div>
 
 			<div style="position: absolute;    left: 90.2745px;    top: 176.268px;    width: 1105px;    height: 228px;   ; animation-delay:0.7s; -webkit-animation-delay:0.7s" class="animated fadeInLeft">
-				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">@Accenture says the bank of the future will be 100% digital, using mobile, social, and analytic technology. And using #Blockchain. #fbforum</div>
+				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic google-sheets-description" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">Google sheets description</div>
 			</div>
 
 
@@ -327,33 +260,20 @@
 				<div id="Element_1481231811878" class="gomedia-text" style="width: 344px; height: auto; font-size: 35px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; color: rgb(255, 255, 255); box-shadow: none; font-weight: bold;"
 								data-zappend="before">Follow us @gocodigo</div>
 			</div>
-			<div style="position: absolute;    left: 107.561px;    top: 796.084px;    width: 907px;    height: 76px;   ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
-				<div id="Element_1480622619231" class="gomedia-text gomedia-dynamic created-at" style="width: 907px; height: auto; font-size: 44px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);"
-								data-zappend="before">May 18</div>
-			</div>
 			<div style="position: absolute; left: -10.9757px; top: 874.001px; width: 1941px; height: 204px;" class="animated fadeInUp">
 				<div id="Element_1481229584432" class="gomedia-shape" style="width: 1941px; height: 204px; background-color: rgb(255, 255, 255); background-image: none; visibility: inherit; box-shadow: none;" data-zappend="before">&nbsp;</div>
 			</div>
 			<div style="position: absolute; left: 2.19517px; top: 150.091px; width: 1928px; height: 548px;" class="animated fadeInRight">
 				<div id="Element_1481229393282" class="gomedia-shape" style="width: 1928px; height: 548px; background-color: rgb(0, 0, 0); background-image: none; visibility: inherit; box-shadow: none; opacity: 0.5;" data-zappend="before">&nbsp;</div>
 			</div>
-
-
 			<div style="clear:both;"></div>
-
-
-
 			<div style="position: absolute; left: 102.352px; top: 720.11px; width: 925px; height: 76px;" class="animated fadeInLeft">
-				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic user-name" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Codigo</div>
+				<div id="Element_1480622638428" class="gomedia-text gomedia-dynamic google-sheets-title" style="width: 925px; height: auto; font-size: 72px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(245, 245, 245); font-weight: bold;">Google sheets title</div>
 			</div>
 
 			<div style="position: absolute;    left: 90.2745px;    top: 176.268px;    width: 1105px;    height: 228px;   ; animation-delay:0.7s; -webkit-animation-delay:0.7s" class="animated fadeInLeft">
-				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic twitter-text" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">70% of all Americans prefer Mobile to branch banking for basic needs and 81% wouldn't switch banks if their local branch closed. #fbforum</div>
+				<div id="Element_1480622652510" class="gomedia-text gomedia-dynamic google-sheets-description" style="width: 1105px; height: auto; font-size: 61px; line-height: 76px; font-family: &quot;Open Sans&quot;; word-wrap: break-word; visibility: inherit; box-shadow: none; color: rgb(255, 255, 255);">Google Sheets Description</div>
 			</div>
-
-
-
-
 
 			<div style="position: absolute;    left: 1306.02px;    top: 198.11px;    width: 533.415px;    height: 533.415px;   ; animation-delay:0.9s; -webkit-animation-delay:0.9s" class="animated fadeIn">
 				<div id="Element_1480622665908" class="gomedia-image image" style="width: 533.415px; height: 533.415px; background-image: url(images/twitterlogo.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;" data-zappend="after">&nbsp;</div>
@@ -377,12 +297,7 @@
 				<div id="Element_1481231797504" class="gomedia-image" style="width: 93.8415px; height: 100.427px; background-image: url(images/37222794957Twitter.png); background-size: 100%; visibility: inherit; background-repeat: no-repeat; box-shadow: none;">&nbsp;</div>
 			</div>
 		</div>
-
 	</div>
-
-
-
-
 </body>
 
 </html>

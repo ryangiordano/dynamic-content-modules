@@ -13,60 +13,33 @@ class Google_Sheets_Module extends Gomedia_Dynamic {
             this.random = this.getParameterByName('random') !== "" ? this.getParameterByName('random') : this.random;
             this.rowPerScene = this.getParameterByName('sheets-url') !== "" ? this.getParameterByName('sheets-url') : this.rowPerScene;
         }
-        console.log(this.rowPerScene,this.googleSheetsUrl,this.random);    $.get(this.googleSheetsUrl,data=>this.parseResponse(data))
+        //ajax call to get the data from google sheets
+        $.get(this.googleSheetsUrl, data => this.parseResponse(data));
+        // this.parseResponse(dummyData);
     }
-    parseResponse(json){
-      let items = json.feed.entry;
+    parseResponse(json) {
+        // let items = json.feed.entry;
+        let items = json.feed.entry;
+        this.populatePage(items);
+    }
+    populatePage(items) {
       console.log(items);
-    }
-    populatePage(){
-      let scenes = $('.scene');
+        const scenes = $('.scene'),
+            scenesLength = scenes.length;
+        //Get a length of the number of scenes that have elements to be written to in it, take the row per scene number and divide by the number of scenes.
+        for (let i = 1; i < scenesLength+1; i += 1) {
+            if (this.sceneChecker(i, this.DOMelements)) {
+              for(let key in this.DOMelements){
+                // TODO: populate items in scene.  Prepare for multiple items per scene using the "rowPerScene" option
+                $(`#scene${i}`).find(key.el)
 
+              }
+            }
+        }
+    }
+    entrySplitter(entry){
+      //removes the google sheets "gsx" prefix from before the name of the column
+      const split = entry.split("$");
+      return split[1];
     }
 }
-///////////////////////////////////////////////
-//
-// (function(){
-//   $('.loading').hide();
-//   var spreadsheetId = "18iqvv4EqhW7-WOn7xPPWxf0XkVXZOwETLi-JdKHXTGg",
-//   url = "https://spreadsheets.google.com/feeds/list/" +
-//           spreadsheetId +
-//           "/od6/public/basic?alt=json",
-//           table = $('#table');
-//   function getData(){
-//     $('.loading').show();
-//     $.get({
-//       url: url,
-//       success: function(response){
-//         var data = response.feed.entry,
-//         len = data.length,
-//           parsedData = [],
-//         i = 0;
-//                 console.log(data);
-//         for(i = 0; i < len; i++){
-//           parsedData.push({
-//             name: data[i].title.$t,
-//             value: data[i].content.$t.replace('email: ', '')
-//           });
-//         }
-//         populateFields(parsedData);
-//       }
-//     })
-//   }
-//   var populateFields = function(parsedData){
-//     var input = $('#input-field'), i = 0,
-//     len = parsedData.length;
-//     console.log(parsedData)
-//     for (i = 0; i < len; i++){
-//         $('.loading').hide();
-//       $('#table tr:last').after('<tr class="added"><td>'+parsedData[i].name+'</td><td>'+parsedData[i].value+'</td></tr>');
-//     }
-//
-//   }
-//   var refreshData = function(){
-//     $('#table .added').remove();
-//     getData();
-//   }
-//   getData();
-//   $('#refresh').on('click', refreshData);
-// }());

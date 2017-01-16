@@ -1,13 +1,14 @@
 $('.gomedia-image.image').css('background-image', "");
-
 let optionsData = {
-    rowPerScene: 10, //how many rows
+    rowPerScene: 2, //how many rows
     checkParams: false,
     random: false,
-    googleSheetsUrl: "https://spreadsheets.google.com/feeds/list/10_NbV0h2F_eEvoJXu6LAzD0KKDW3rpHeWKB6_9t4CAk/od6/public/values?alt=json",
+    // TODO: Run this through the proxy server
+    googleSheetsUrl: "https://spreadsheets.google.com/feeds/list/1PRu9d6daRb8pYiYpPhUkX3v7NLZXfPqsNmCRDmaBfk0/od6/public/values?alt=json",
     DOMelements: {
-        textElement: ".google-sheets-text",
-        descriptionElement: ".google-sheets-description"
+        titleElement: {el:".google-sheets-title",col:"name"},
+        descriptionElement: {el:".google-sheets-description",col:"description"},
+        imageElement: {el:".google-sheets-image", col:"image"}
     }
 };
 console.log(optionsData.googleSheetsUrl+optionsData.spreadSheetId + optionsData.UrlParameters);
