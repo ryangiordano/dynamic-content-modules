@@ -30,10 +30,6 @@ It takes a 'snapshot' of the html that was edited and saves it.
 3) Gomedia_Dynamic is inherited by dynamic modules like Twitter_Module and State_News_Module
 */
 
-
-
-
-
 class Gomedia_Dynamic {
     constructor() {
         this.arrayOfDynamicScriptIds = [];
@@ -126,6 +122,7 @@ class Gomedia_Dynamic {
             "brassiere",
             "breast",
             "breasts",
+            "brothel",
             "bugger",
             "bukkake",
             "bullshit",
@@ -773,7 +770,6 @@ class Gomedia_Dynamic {
         let filter = this.filter;
         let res;
         if (typeof string != "undefined") {
-
             res = string.split(/\s*\b\s*/);
         } else {
             return false;
@@ -954,4 +950,13 @@ class Gomedia_Dynamic {
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send(dataString);
     }
+    sceneChecker(j, domEls){
+      //Check to see if the dom elements are present in the current scene.  If so, return true.
+          for(let key in domEls){
+            if($(`#scene${j}`).find(domEls[key]["el"]).length<=0){
+              return false;
+            }
+          }
+          return true;
+        }
 }

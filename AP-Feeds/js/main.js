@@ -1,3 +1,6 @@
+//clear out errors
+$('#errors').html('');
+
  /*
 AP FEED ID REFERENCE:
  var NATIONAL_NEWS_STRING_ID = "31996";
@@ -19,15 +22,23 @@ let optionsData = {
 		descriptionElement: ".description"
 	}
 }
+let defaultStory = {
+  title:"Tech innovator Codigo welcomes new challenges with expanded product offering",
+  description:{value:"LOUISVILLE, KY – With retail media solutions ranging from digital menu boards to interactive touchscreen kiosks, Louisville-based technology company Codigo is broadening their online software to include a web-based tool for creating animated digital content. Users are now able to log into the web portal from any compatible device and work from hundreds of professionally-designed ad templates or build their own masterpieces from scratch using image assets they upload themselves. For marketers hoping to get messages to their audiences quickly, the new functionality is a critical part of the digital marketing spectrum."}
+}
 let ap_feeds = new AP_Feeds_Module(optionsData);
 function gomediaDynamicInit(){
+	//First populate with default story, then fill in with new news article.
+	ap_feeds.populateWithDefaultStory(defaultStory);
 	ap_feeds.init();
 
 }
 
+
 function dynamicData(json){
 	ap_feeds.isLoaded$.subscribe(
 		next=>{
+			error = new Error('#errors', 'dynamicData has run');
 			ap_feeds.parse_request(json);
 			ap_feeds.removeDynamicScripts();
 		},

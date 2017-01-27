@@ -1,17 +1,19 @@
 $('.gomedia-image.image').css('background-image', "");
 let optionsData = {
-    rowPerScene: 2, //how many rows
-    checkParams: false,
-    random: false,
+    rowPerScene: 1, //how many rows
+    checkParams: true,
+    random: true,
     // TODO: Run this through the proxy server
-    googleSheetsUrl: "https://spreadsheets.google.com/feeds/list/1PRu9d6daRb8pYiYpPhUkX3v7NLZXfPqsNmCRDmaBfk0/od6/public/values?alt=json",
+    googleSheetsPrefix: "https://spreadsheets.google.com/feeds/list/",
+    googleSheetsSuffix: "/od6/public/values?alt=json",
+    googleSheetsID: "19SBXwkla_27vd3-mmV9a5KaH9iDHRUEufSa0beJxljg",
     DOMelements: {
-        titleElement: {el:".google-sheets-title",col:"name"},
-        descriptionElement: {el:".google-sheets-description",col:"description"},
-        imageElement: {el:".google-sheets-image", col:"image"}
+        titleElement: {el:".google-sheets-a"},
+        descriptionElement: {el:".google-sheets-b"},
+        // imageElement: {el:".google-sheets-c", col:"image"}
     }
 };
-console.log(optionsData.googleSheetsUrl+optionsData.spreadSheetId + optionsData.UrlParameters);
+// console.log(optionsData.googleSheetsUrl);
 let google_sheets = new Google_Sheets_Module(optionsData);
 
 function gomediaDynamicInit() {

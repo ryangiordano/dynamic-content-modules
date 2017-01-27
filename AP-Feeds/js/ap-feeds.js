@@ -18,6 +18,7 @@ let US_POLITICS_STRING_ID = "36411";
 let WORLD_POLITICS_STRING_ID = "36412";
 //////////////////////////////////////////////
 */
+
 class AP_Feeds_Module extends Gomedia_Dynamic {
     constructor(optionsData) {
         super();
@@ -49,6 +50,10 @@ class AP_Feeds_Module extends Gomedia_Dynamic {
                 isLoaded: true
             })
         });
+    }
+    //load generic news story if for some reason the other story fails to get brought in.
+    genericNewsStory(){
+
     }
     parse_request(json) {
         let items = json.rss.channel.item;
@@ -93,5 +98,25 @@ class AP_Feeds_Module extends Gomedia_Dynamic {
             };
         }
         this.addOnFunctions(); //hides links in text responses
+    }
+    populateWithDefaultStory(defaultStory){
+      console.log("???");
+      let DOMelements = this.DOMelements;
+      let scenes = $('.scene');
+      for (let i = 0; i < scenes.length; i++) {
+          let sceneNumber = i + 1;
+          if ($('#scene' + sceneNumber).find(DOMelements.titleElement).length >= 1 && $('#scene' + sceneNumber).find(DOMelements.descriptionElement).length >= 1) {
+              let scene = '#scene' + sceneNumber,
+                  title = defaultStory.title,
+                  formatted_title = title.replace(/^@+/i, ''),
+                  description = defaultStory.description;
+              if (typeof description == "object") {
+                  description = defaultStory.description.value;
+              }
+              $(scene + ' ' + DOMelements.idElement).html(this.feed);
+              $(scene + ' ' + DOMelements.titleElement).html(title);
+              $(scene + ' ' + DOMelements.descriptionElement).html(description);
+          };
+      }
     }
 }

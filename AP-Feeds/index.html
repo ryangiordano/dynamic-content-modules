@@ -4,12 +4,7 @@
 	<meta charset="UTF-8">
 	<script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/vendor/rx.all.min.js"></script>
-	<!-- GoMedia Dynamic Global Functions -->
-	<script src="js/gomedia-dynamic-util-2.0.js"></script>
-	<!-- THIS CONTENT SERIES -->
-	<script src="js/ap-feeds.js"></script>
-	<!-- THIS CONTENT -->
-	<script id="dynamic" src="js/main.js"></script>
+
 
 	<link rel="stylesheet" href="css/animate.css">
 	<style>
@@ -96,6 +91,7 @@
 </head>
 
 <body style="width: 1920px; height: 1080px;">
+	<ul id="errors" style="position:absolute; top:0; right:0;z-index:1000"></ul>
 	<div id="Stage" class="GoMedia40-20 stageArea" style="width: 1920px; height: 1080px; overflow: hidden; position: inherit; background-color: black;">
 		<div class="scene" id="scene1" data-index="1" style="display: block;" data-duration="4">
 			<div style="position: absolute; left: 0px; top: 0px; width: 1920px; height: 1080px;">
@@ -142,7 +138,7 @@
 				</div>
 			</div>
 			<div style="position: absolute;  left: 120.255px;  top: 175.4742px;  width: 1731px;  height: 80px; ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
-				<div id="Element_1467745465534" class="gomedia-dynamic feed-id" style="width: 1731px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Yanone Kaffeesatz&quot;; font-size: 90px; color: rgb(242, 241, 244); box-shadow: none; line-height: 80px; font-weight: normal;">McConnell to lead Senate GOP, Schumer new Democratic leader</div>
+				<div id="Element_1467745465534" class="gomedia-dynamic feed-id" style="width: 1731px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Yanone Kaffeesatz&quot;; font-size: 90px; color: rgb(242, 241, 244); box-shadow: none; line-height: 80px; font-weight: normal;"></div>
 			</div>
 			<div style="position: absolute;  left: 120.255px;  top: 75.4742px;  width: 1731px;  height: 80px; ; animation-delay:0.2s; -webkit-animation-delay:0.2s" class="animated fadeInLeft">
 				<div id="Element_1467743223793" class="gomedia-dynamic title" style="width: 1731px; height: 111.111px; word-wrap: break-word; visibility: inherit; font-family: &quot;Yanone Kaffeesatz&quot;; font-size: 90px; color: rgb(242, 241, 244); box-shadow: none; line-height: 80px; font-weight: normal;">McConnell to lead Senate GOP, Schumer new Democratic leader</div>
@@ -169,5 +165,11 @@
 		</div>
 	</div>
 </body>
-
+<!-- GoMedia Dynamic Global Functions -->
+<script src="js/gomedia-dynamic-util-2.0.js"></script>
+<!-- THIS CONTENT SERIES -->
+<script src="js/errors.js"></script>
+<script src="js/ap-feeds.js"></script>
+<!-- THIS CONTENT -->
+<script id="dynamic" src="js/main.js"></script>
 </html>

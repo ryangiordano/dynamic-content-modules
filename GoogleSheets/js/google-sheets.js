@@ -9,37 +9,70 @@ class Google_Sheets_Module extends Gomedia_Dynamic {
     }
     init() {
         if (this.checkParams) {
-            this.googleSheetsUrl = this.getParameterByName('row-per-scene') !== "" ? this.getParameterByName('row-per-scene') : this.googleSheetsUrl;
+            //grab parameters from the content editor and replace supplied parameters in the optionsData object in main.js.
+            this.rowPerScene = this.getParameterByName('row-per-scene') !== "" ? this.getParameterByName('row-per-scene') : this.rowPerScene;
             this.random = this.getParameterByName('random') !== "" ? this.getParameterByName('random') : this.random;
-            this.rowPerScene = this.getParameterByName('sheets-url') !== "" ? this.getParameterByName('sheets-url') : this.rowPerScene;
+            //Allows customers to easily place the google sheets URL into the parameters.
+            if(this.getParameterByName('sheets-url')!== ""){
+              this.googleSheetsUrl = this.getParameterByName('sheets-url');
+                          this.googleSheetsID = this.googleSheetsUrl.substring(this.googleSheetsUrl.lastIndexOf('d/')+2,this.googleSheetsUrl.lastIndexOf('/edit'));
+            }
+
         }
         //ajax call to get the data from google sheets
-        $.get(this.googleSheetsUrl, data => this.parseResponse(data));
-        // this.parseResponse(dummyData);
+        $.ajax({
+            url: this.googleSheetsPrefix + this.googleSheetsID+this.googleSheetsSuffix,
+            type: 'GET',
+            success: data => this.parseResponse(data),
+            error: data => console.error(data)
+        });
     }
     parseResponse(json) {
-        // let items = json.feed.entry;
+        let newItems = [];
         let items = json.feed.entry;
-        this.populatePage(items);
+        items.map((item) => {
+            let newItem = {};
+            for (let key in item) {
+                if (item.hasOwnProperty(key) && key.indexOf('gsx') > -1) {
+                    //Google sheets properties are prefixed with "gsx$".  This code removes that and normalizes the property name.
+                    newItem[key.split('$')[1]] = item[key].$t;
+                }
+            }
+            newItems.push(newItem);
+        });
+
+        this.fillInColData(newItems);
+    }
+    fillInColData(newItems) {
+      //gets the column names from google sheets and assigns them to elements in the content piece.  Important, because now we don't have to explicitly tell the program the names of the columns.
+        let propertyNameArray = [];
+        let i = 0;
+        for (let key in newItems[0]) {
+            propertyNameArray.push(key);
+        }
+        for (let key in this.DOMelements) {
+            this.DOMelements[key].col = propertyNameArray[i]
+                ++i;
+        }
+        this.populatePage(newItems)
     }
     populatePage(items) {
-      console.log(items);
         const scenes = $('.scene'),
             scenesLength = scenes.length;
+        let currentItem;
         //Get a length of the number of scenes that have elements to be written to in it, take the row per scene number and divide by the number of scenes.
-        for (let i = 1; i < scenesLength+1; i += 1) {
-            if (this.sceneChecker(i, this.DOMelements)) {
-              for(let key in this.DOMelements){
-                // TODO: populate items in scene.  Prepare for multiple items per scene using the "rowPerScene" option
-                $(`#scene${i}`).find(key.el)
-
-              }
+        for (let i = 1; i <= scenesLength; ++i) {
+            if (!this.sceneChecker(i, this.DOMelements)) {
+                continue;
+            }
+            if (items.length > 0) {
+                currentItem = this.random ? items.splice(Math.floor(Math.random() * items.length), 1)[0] : items.shift();
+            }
+            console.log(currentItem);
+            for (let key in this.DOMelements) {
+                // TODO: populate items in scene.  Prepare for multiple items per scene using the "rowPerScene" option.  For right now, let's focus on getting information on the DOM
+                $(`#scene${i}`).find(this.DOMelements[key].el).html(currentItem[this.DOMelements[key].col])
             }
         }
-    }
-    entrySplitter(entry){
-      //removes the google sheets "gsx" prefix from before the name of the column
-      const split = entry.split("$");
-      return split[1];
     }
 }

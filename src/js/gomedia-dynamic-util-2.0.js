@@ -122,6 +122,7 @@ class Gomedia_Dynamic {
             "brassiere",
             "breast",
             "breasts",
+            "brothel",
             "bugger",
             "bukkake",
             "bullshit",
@@ -949,4 +950,13 @@ class Gomedia_Dynamic {
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send(dataString);
     }
+    sceneChecker(j, domEls){
+      //Check to see if the dom elements are present in the current scene.  If so, return true.
+          for(let key in domEls){
+            if($(`#scene${j}`).find(domEls[key]["el"]).length<=0){
+              return false;
+            }
+          }
+          return true;
+        }
 }

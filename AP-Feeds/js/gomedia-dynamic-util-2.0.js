@@ -122,6 +122,7 @@ class Gomedia_Dynamic {
             "brassiere",
             "breast",
             "breasts",
+            "brothel",
             "bugger",
             "bukkake",
             "bullshit",
@@ -889,6 +890,7 @@ class Gomedia_Dynamic {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(location.search);
+        // console.log(decodeURIComponent(results[1].replace(/\+/g, " ")));
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
     goMediaDynamicSceneRefresh() {
@@ -906,9 +908,12 @@ class Gomedia_Dynamic {
             var script = document.createElement('script');
             script.type = 'text/javascript';
             script.src = url;
+            //////////////////////////////////////////////////////////////
             script.id = url;
             script.classList = "dynamicScript";
+            // script.crossOrigin="anonymous";
             self.arrayOfDynamicScriptIds.push(url);
+            //////////////////////////////////////////////////////////////////////
             script.onreadystatechange = callback;
             script.onload = callback;
             head.appendChild(script);
@@ -945,4 +950,13 @@ class Gomedia_Dynamic {
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send(dataString);
     }
+    sceneChecker(j, domEls){
+      //Check to see if the dom elements are present in the current scene.  If so, return true.  j is the current scene number
+          for(let key in domEls){
+            if($(`#scene${j}`).find(domEls[key]["el"]).length<=0){
+              return false;
+            }
+          }
+          return true;
+        }
 }
